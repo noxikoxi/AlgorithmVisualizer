@@ -1,0 +1,21 @@
+div#topNav {
+    padding: 10px;
+    background-color: var(--secondary);
+}
+
+div#topNav ul {
+    display: flex;
+    flex-direction: row;
+    gap:20px;
+    justify-content: center;
+     
+}
+
+div#topNav ul a {
+    color: var(--text);
+    font-size: large;
+}
+
+div#topNav ul a:hover{
+    text-decoration: underline;
+}
