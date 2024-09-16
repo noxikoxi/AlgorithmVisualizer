@@ -9,10 +9,10 @@ export const bubbleSortTodo = [
 - After each pass, the largest unsorted element is placed in its correct position at the end of the list.`
 ]
 
-export function bubbleSort(arr){
+export function bubbleSort(arr : Number[]){
     let n = arr.length;
     for(let i = 0; i < n-1; ++i){
-        for(let j = 0; j < n-1-1; ++j){
+        for(let j = 0; j < n-1-i; ++j){
             if(arr[j] > arr[j+1]){
                 // Swap the elements
                 let tmp = arr[j];

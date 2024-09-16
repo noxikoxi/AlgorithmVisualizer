@@ -49,3 +49,24 @@
 .dropdown:hover .dropdownBtn {
     background-color: hsl(from var(--secondary) h s l / 0.7);
 }
+
+@keyframes rotateUp {
+    to{
+        transform: rotate(180deg);
+    }
+}
+
+@keyframes rotateDown {
+    to{
+        transform: rotate(0deg);
+    }
+}
+
+.open {
+    animation: rotateUp 0.6s ease-in forwards ;
+
+}
+
+.close {
+    animation: rotateDown 0.6s ease-in forwards ;
+}

@@ -9,9 +9,14 @@ interface CodeBlockProps {
 
 const CodeBlock: React.FC<CodeBlockProps> = ({ code, language}) => {
   return (
-    <SyntaxHighlighter language={language} style={okaidia}>
-      {code}
-    </SyntaxHighlighter>
+    <div style={{position: "relative"}}>
+      <SyntaxHighlighter language={language} style={okaidia}>
+        {code}
+      </SyntaxHighlighter>
+      <div style={{position: "absolute", top: 20, right: 20, backgroundColor: "yellow", borderRadius: "5px", padding: "5px 8px 5px 8px", border: "2px solid black"}}>
+        <span style={{fontWeight: 500, letterSpacing: "1px", color: "black", fontSize: 22}}>JS</span>
+      </div>
+    </div>
   );
 };
 

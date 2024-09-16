@@ -1,9 +1,10 @@
-import React from 'react';
-import Header from '../components/Header';
+import "../styles/mainpage.css";
+
 
 function MainPage() {
   return (
-    <div>
+    <div id="content">
+      <h1>Learn about Data Structures and Algorithms</h1>
     </div>
   );
 }

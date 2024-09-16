@@ -16,7 +16,7 @@ const Dropdown = ({text, children} : Props) => {
         <div className="dropdown">
             <button className={`dropdownBtn ${isOpened ? 'active' : ''}`} onClick={() => setisOpened(!isOpened)}>
                 {text}
-                <ChevronDown size={25}/>
+                <ChevronDown size={25} style={{transition: "transform 0.5s ease-in", transform: isOpened ? "rotate(180deg)" : "rotate(0deg)" }}/>
             </button>
             {isOpened && 
                 <div className="dropdown-content">
