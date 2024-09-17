@@ -1,12 +1,12 @@
-import "../styles/sort.css";
-import {bubbleSortDescription, bubbleSortTodo} from "../algorithms/sorting/descriptions";
-import { bubbleSort } from "../algorithms/sorting/sort";
-import CodeBlock from "../components/CodeBlock";
 import { useState } from "react";
+import "../styles/sort.css";
 import { generateRandomNumbers } from "../utils/numbers";
-import BubbleSortVisualization from "../components/visualizations/BubbleSortVisualization";
+import CodeBlock from "../components/CodeBlock";
+import { selectionSortDescription, selectionSortTodo } from "../algorithms/sorting/descriptions";
+import { selectionSort } from "../algorithms/sorting/sort";
+import SelectionSortVisualization from "../components/visualizations/SelectionSortVisualization";
 
-const BubbleSortPage = () => {
+const SelectionSortPage = () => {
 
     const [randomNumbers, setRandomNumbers] = useState<number[]>(generateRandomNumbers(16, -20, 20));
     
@@ -15,10 +15,10 @@ const BubbleSortPage = () => {
             <div id="info">
                 <div id="description">
                     <p className="title">
-                        Bubble Sort
+                        Selection Sort
                     </p>
                     <span>
-                        {bubbleSortDescription}
+                        {selectionSortDescription}
                     </span>
                     <div id="complexity">
                         <span>Time Complexity: O( n<span style={{verticalAlign: "super", fontSize: "smaller"}}>2 </span>)</span>
@@ -27,13 +27,13 @@ const BubbleSortPage = () => {
                     <div id="todo">
                         <span>How bubble sort works:</span>
                         <ol>
-                            {bubbleSortTodo.map((item, index) => (
+                            {selectionSortTodo.map((item, index) => (
                                 <li key={item.slice(10)}><pre>{item}</pre></li>
                             )) }
                         </ol>
                     </div>
                     <div id ="code">
-                        <CodeBlock code = {bubbleSort.toString()} language="javascript"/>
+                        <CodeBlock code = {selectionSort.toString()} language="javascript"/>
                     </div>
                 </div>
             </div>
@@ -47,7 +47,7 @@ const BubbleSortPage = () => {
                         <button onClick={() => setRandomNumbers(generateRandomNumbers(16, -20, 20))}>
                             Generate
                         </button>
-                        <button onClick={() => setRandomNumbers(bubbleSort([...randomNumbers]))} className="next">
+                        <button onClick={() => setRandomNumbers(selectionSort([...randomNumbers]))} className="next">
                             Sort
                         </button>
                         <button onClick={() => setRandomNumbers([])} className="danger">
@@ -55,11 +55,11 @@ const BubbleSortPage = () => {
                         </button>
                     </div>
                 </div>
-                <BubbleSortVisualization/>
+                <SelectionSortVisualization />
 
             </div>
         </div>
     )
 }
 
-export default BubbleSortPage;
+export default SelectionSortPage;

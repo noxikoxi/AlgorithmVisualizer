@@ -9,18 +9,12 @@ export const bubbleSortTodo = [
 - After each pass, the largest unsorted element is placed in its correct position at the end of the list.`
 ]
 
-export function bubbleSort(arr : Number[]){
-    let n = arr.length;
-    for(let i = 0; i < n-1; ++i){
-        for(let j = 0; j < n-1-i; ++j){
-            if(arr[j] > arr[j+1]){
-                // Swap the elements
-                let tmp = arr[j];
-                arr[j] = arr[j+1];
-                arr[j+1] = tmp;
-            }
-        }
-    }
-
-    return arr;
-}
+export const selectionSortDescription = "Selection Sort is a straightforward comparison-based sorting algorithm. It works by repeatedly selecting the smallest (or largest, depending on the order) element from the unsorted portion of the list and placing it in the correct position. Although it’s not the most efficient for large datasets, it’s easy to understand and implement, making it a good learning tool for basic sorting concepts."
+export const selectionSortTodo = [
+    "Iterate through array and find the highest value [or the lowest]",
+    "Swap it with the first index of the array",
+    "Now iterate through array again, but start from the next index",
+    "Swap found value with the index you started searching from",
+    "Repeat this untill the last index of array",
+    "After each pass one element is inserted in it's correct position"
+]

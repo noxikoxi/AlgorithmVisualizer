@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { generateRandomNumbers } from "../../utils/numbers"
+import { generateRandomNumbers } from "../../utils/numbers";
 import { drawSort } from "../../utils/canvas";
 import { VisualizationPoints } from "../../algorithms/sorting/config";
 
-const BubbleSortVisualization = () => {
-    
+
+const SelectionSortVisualization = () => {
+
     const numbersNum = VisualizationPoints;
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const [numbers, setNumbers] = useState<number[]>(generateRandomNumbers(numbersNum, 1, 100));
@@ -16,12 +17,22 @@ const BubbleSortVisualization = () => {
         let arr = [...numbers];
         const len = arr.length;
         for (let i = 0; i < len - 1; i++) {
-            for(let j = 0; j < len - 1 - i; j++)
+            let lowestValueIndex = i;
+            for(let j = i+1; j < len; j++)
             {
-                if (arr[j] > arr[j + 1]) {
-                    [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
-                    steps.push([...arr]);
+                if (arr[j] < arr[lowestValueIndex]) {
+                    lowestValueIndex = j;
                 }
+
+                if (arr[j] > arr[j + 1]) {
+                    
+                    
+                }
+            }
+            // Swap the elements
+            if (lowestValueIndex != i) {
+                [arr[lowestValueIndex], arr[i]] = [arr[i], arr[lowestValueIndex]];
+                steps.push([...arr]);
             }
         }
 
@@ -82,7 +93,9 @@ const BubbleSortVisualization = () => {
                 <span style={{fontSize: 20, paddingLeft: "10px"}}>Each step represents swap of the elements.</span>
             </div>
         </div>
+
     )
 }
 
-export default BubbleSortVisualization
+
+export default SelectionSortVisualization;
