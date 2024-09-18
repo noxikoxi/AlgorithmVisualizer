@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './styles/global.css';
+import "./styles/sort.css";
 import AppRoutes from './AppRoutes';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter as Router } from 'react-router-dom';
