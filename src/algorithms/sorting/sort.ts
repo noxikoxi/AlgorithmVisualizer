@@ -33,3 +33,21 @@ export function selectionSort(arr: number[]){
 
     return arr;
 }
+
+export function insertionSort(arr: number[]) {
+    const len = arr.length;
+    for (let i = 1; i < len; ++i){
+        const elem = arr[i];
+        let j = i-1;
+
+        while(j >= 0 && arr[j] > elem)
+        {
+            // Shift elements 
+            arr[j+1] = arr[j];
+            --j;
+        }
+        // Insert selected element
+        arr[j+1] = elem;
+    }
+    return arr;
+}
