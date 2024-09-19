@@ -15,7 +15,7 @@ const BubbleSortPage = () => {
                 todo={bubbleSortTodo} 
                 timeComplexity={<span>Time Complexity: O( n<span style={{verticalAlign: "super", fontSize: "smaller"}}>2 </span>)</span>} 
                 spaceComplexity={<span>Space Complexity: O(1)</span>} 
-                sortFunc={bubbleSort.toString()} 
+                funcs={[bubbleSort.toString()]} 
             />
             <div id="visualizationContainer">
                 <TestCode sort={bubbleSort}/>

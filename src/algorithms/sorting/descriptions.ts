@@ -29,3 +29,15 @@ export const insertionSortTodo = [
     "In each step array is sorted to the select item first position",
     "On the other hand we can say that selected element is shifted to the left untill the next element is greater/lower"
 ]
+
+export const mergeSortDescription = "Merge sort is a stable sorting algorithm that uses 'divide and conquer' approach. It works by recursively dividing the array into smaller subarrays until each subarray has only one element. Then it starts merging those subarrays creating one from two, where the new array is sorted. The merge step ensures that each merged array is sorted. This algorithm is particulary effective for large datasets."
+export const mergeSortTodo = [
+    "If the array has more that one element divide it into two halves",
+    "Repeat this process for each created new subarray",
+    `Once each subarray has only one element start merging then.
+- Compare elements of the two halves and merge then in sorted order (Append the lowest element from arrays into new one until every element is considered)`,
+    "Continue merging the subarrays untill there is only one, full sorted arrays"
+]
+
+export const inPlaceMergeSortDescription = "In merge sort new arrays are created using auxiliary space. However the same effect can be achieved without creating them, resulting in O(1) space complexity. Dividing they array can be done using indexes, so apart from creating new array, indexes can be passed as parameters (begin, middle, end)."
+export const inPlaceMergeSortAdditional = `<span>Be aware that presented approach makes time complexity worse, because O( n<span style="vertical-align: super; font-size: smaller;">2</span> ) is needed for merging. Resulting in overall time complexity O(n<span style="vertical-align: super; font-size: smaller;">2</span> * log<span style="vertical-align: sub; font-size: smaller">2</span>n )</span>.`;

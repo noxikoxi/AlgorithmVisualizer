@@ -1,15 +1,15 @@
 import { useEffect, useRef, useState } from "react";
-import { VisualizationPoints } from "../../algorithms/sorting/config";
 import { generateRandomNumbers } from "../../utils/numbers";
 import { drawSort } from "../../utils/canvas";
 
 type Props = {
     steps: number[][],
     setNumbers: (arr: number[]) => void,
-    numbersNum: number
+    numbersNum: number,
+    stepDescription? : string
 }
 
-const SortBarVisualization = ({steps, setNumbers, numbersNum} : Props) => {
+const SortBarVisualization = ({steps, setNumbers, numbersNum, stepDescription} : Props) => {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const [step, setStep] = useState<number>(0);
 
@@ -30,7 +30,7 @@ const SortBarVisualization = ({steps, setNumbers, numbersNum} : Props) => {
                 <h1>Animation</h1>
                 <h1>Step: {step}/{steps.length-1}</h1>
             </div>
-            <canvas ref={canvasRef}>
+            <canvas ref={canvasRef} width={1000} height={500}>
 
             </canvas>
             <div className="buttons">
@@ -62,7 +62,7 @@ const SortBarVisualization = ({steps, setNumbers, numbersNum} : Props) => {
                 <button onClick={() => setStep(0)} className="danger">
                     Reset
                 </button>
-                <span style={{fontSize: 20, paddingLeft: "10px"}}>Each step represents swap of the elements.</span>
+                <span style={{fontSize: 20, paddingLeft: "10px"}}>{stepDescription ? stepDescription : "Each step represents swap of the elements."}</span>
             </div>
         </div>
     )

@@ -13,7 +13,7 @@ const SelectionSortPage = () => {
                 todo={selectionSortTodo} 
                 timeComplexity={<span>Time Complexity: O( n<span style={{verticalAlign: "super", fontSize: "smaller"}}>2 </span>)</span>} 
                 spaceComplexity={<span>Space Complexity: O(1)</span>} 
-                sortFunc={selectionSort.toString()} 
+                funcs={[selectionSort.toString()]} 
             />
             <div id="visualizationContainer">
                 <TestCode sort={selectionSort}/>

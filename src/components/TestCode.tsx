@@ -3,17 +3,19 @@ import { TestCodeNumbersMax, TestCodeNumbersMin, TestCodeNumbersNum } from "../a
 import { generateRandomNumbers } from "../utils/numbers";
 
 type Props = {
-    sort: (arr: number[]) => number[],
+    sort?: (arr: number[]) => number[],
+    inPlaceSort?: (arr: number[]) => void,
+    text? : string
 }
 
-const TestCode = ({ sort} : Props) => {
+const TestCode = ({ sort, text, inPlaceSort} : Props) => {
 
     const [randomNumbers, setRandomNumbers] = useState<number[]>(generateRandomNumbers(TestCodeNumbersNum, TestCodeNumbersMin, TestCodeNumbersMax));
     
     return (
         <>
         <div style={{display: "flex", justifyContent: "center", width: "100%"}}>
-            <span style={{fontSize: "larger", fontWeight: '500', letterSpacing: "1px", margin: "15px 0px 15px 0px"}}>See if this code works!</span>
+            <span style={{fontSize: "larger", fontWeight: '500', letterSpacing: "1px", margin: "15px 0px 15px 0px"}}>{text ? text : "See if this code works!"}</span>
         </div>
         <div id="testCode">
             <span>[ {randomNumbers.map((item, index) => <span key={index}>{item.toString()} </span>)} ]</span>
@@ -21,7 +23,14 @@ const TestCode = ({ sort} : Props) => {
                 <button onClick={() => setRandomNumbers(generateRandomNumbers(TestCodeNumbersNum, TestCodeNumbersMin, TestCodeNumbersMax))}>
                     Generate
                 </button>
-                <button onClick={() => setRandomNumbers(sort([...randomNumbers]))} className="next">
+                <button onClick={() => {
+                    if(sort){
+                        setRandomNumbers(sort([...randomNumbers]));
+                    }else if (inPlaceSort){
+                        inPlaceSort(randomNumbers);
+                        setRandomNumbers([...randomNumbers]);
+                    }   
+                }} className="next">
                     Sort
                 </button>
                 <button onClick={() => setRandomNumbers([])} className="danger">

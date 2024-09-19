@@ -13,7 +13,7 @@ const InsertionSortPage = () => {
                 todo={insertionSortTodo} 
                 timeComplexity={<span>Time Complexity: O( n<span style={{verticalAlign: "super", fontSize: "smaller"}}>2 </span>)</span>} 
                 spaceComplexity={<span>Space Complexity: O(1)</span>} 
-                sortFunc={insertionSort.toString()} 
+                funcs={[insertionSort.toString()]} 
             />
             <div id="visualizationContainer">
                 <TestCode sort={insertionSort}/>

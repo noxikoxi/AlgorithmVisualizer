@@ -10,12 +10,14 @@
 }
 
 #info {
+    display: flex;
+    flex-direction: column;
     width: 100%;
     height: 100%;
     overflow-y: auto;
 }
 
-#description {
+.description {
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -32,13 +34,14 @@ pre {
     white-space: pre-wrap;
 }
 
-#code {
+.code {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-#code pre {
+.code pre {
     font-size: x-large;
 }
 
@@ -49,7 +52,7 @@ pre {
     box-shadow: 5px 5px 5px var(--secondary);
 }
 
-#description span {
+.description span {
     font-size: large;
 }
 
@@ -61,6 +64,39 @@ pre {
     justify-content: space-around;
     align-items: center;
     border: 1px solid var(--border);
+}
+
+.numbersAsBlocksContainer {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    border: 1px solid var(--border);
+}
+
+.numbersAsBlocksContainer .row {
+    margin: 10px 0px 10px 0px;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.numbersAsBlocksContainer .array{
+    padding: 3px;
+    border-radius: 10px;
+    background-color: var(--text);
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.numbersAsBlocksContainer .block {
+    padding: 5px 9px 5px 9px;
+    background-color: var(--secondary);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: x-large;
 }
 
 #complexity > span {
@@ -78,7 +114,7 @@ pre {
     width: 100%;
     height: 100%;
     background-color: var(--primary);
-    overflow: none;
+    overflow-y: auto;
 }
 
 #testCode {
@@ -97,12 +133,14 @@ pre {
 
 .buttons button {
     background-color: var(--secondary);
+    box-shadow: 5px 5px 5px black;
     color: var(--text);
     font-size: large;
     border-radius: 10px;
     padding: 10px;
     cursor: pointer;
     width: 100px;
+    border: none;
 }
 
 .buttons button.danger {
@@ -114,7 +152,7 @@ pre {
 }
 
 .buttons button:hover{
-    border: 1px solid white;
+    outline: 2px solid white;
 }
 
 canvas {

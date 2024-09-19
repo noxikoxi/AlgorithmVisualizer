@@ -7,13 +7,14 @@ type Props = {
     todo: string[],
     timeComplexity: ReactNode,
     spaceComplexity: ReactNode,
-    sortFunc: string
+    funcs: string[],
+    children?: ReactNode
 }
 
-const SortDescription = ({title, description, todo, sortFunc, timeComplexity, spaceComplexity} : Props) => {
+const SortDescription = ({title, description, todo, funcs, timeComplexity, spaceComplexity, children} : Props) => {
     return (
     <div id="info">
-        <div id="description">
+        <div className="description">
             <p className="title">
                 {title}
             </p>
@@ -25,16 +26,20 @@ const SortDescription = ({title, description, todo, sortFunc, timeComplexity, sp
                 {spaceComplexity}
             </div>
             <div id="todo">
-                <span>How bubble sort works:</span>
+                <span>How {title.toLowerCase()} works:</span>
                 <ol>
                     {todo.map((item, index) => (
                         <li key={item.slice(10)}><pre>{item}</pre></li>
                     )) }
                 </ol>
             </div>
-            <div id ="code">
-                <CodeBlock code = {sortFunc} language="javascript"/>
+            <div className ="code">
+                {funcs.map((text, index) => (
+                    <CodeBlock key={index} code = {text} language="javascript"/>
+                ))}
             </div>
+            {children}
+            
         </div>
     </div>
     )
