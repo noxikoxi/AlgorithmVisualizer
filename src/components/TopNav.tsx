@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "../styles/topnav.css";
 
 type Props = {
@@ -7,11 +7,13 @@ type Props = {
 }
 
 const TopNav = ({links, text} : Props) => {
+    const location = useLocation();
+
     return (
         <div id="topNav">
             <ul>
                 {links.map((link, index) => (
-                    <Link to={link} key={index}>
+                    <Link to={link} key={index} className={location.pathname === link ? "active" : "" }>
                         <li>
                             {text[index]}
                         </li>
