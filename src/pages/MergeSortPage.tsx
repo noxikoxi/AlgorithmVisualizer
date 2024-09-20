@@ -1,5 +1,5 @@
-import { inPlaceMergeSortAdditional, inPlaceMergeSortDescription, mergeSortDescription, mergeSortTodo } from "../algorithms/sorting/descriptions";
-import { inPlaceMerge, inPlaceMergeSort, merge, mergeSort } from "../algorithms/sorting/sort";
+import { inPlaceMergeSortAdditional, inPlaceMergeSortDescription, inPlaceMergeSortText, inPlaceMergeText, mergeSortDescription, mergeSortText, mergeSortTodo, mergeText } from "../algorithms/sorting/descriptions";
+import {inPlaceMergeSort, mergeSort } from "../algorithms/sorting/sort";
 import CodeBlock from "../components/CodeBlock";
 import SortDescription from "../components/SortDescription";
 import TestCode from "../components/TestCode";
@@ -15,7 +15,7 @@ const MergeSortPage = () => {
                 todo={mergeSortTodo} 
                 timeComplexity={<span>Time Complexity: O( n * log<span style={{verticalAlign: "sub", fontSize: "smaller"}}>2</span>(n) )</span>} 
                 spaceComplexity={<span>Space Complexity: O(n)</span>} 
-                funcs={[mergeSort.toString(), merge.toString()]} 
+                funcs={[mergeSortText, mergeText]} 
             >
                 <p className="title">
                     In-Place Merge Sort
@@ -23,7 +23,7 @@ const MergeSortPage = () => {
                 <span>{inPlaceMergeSortDescription}</span>
                 <div dangerouslySetInnerHTML={{__html : inPlaceMergeSortAdditional}}/>
                 <div className="code">
-                {[inPlaceMergeSort.toString(), inPlaceMerge.toString()].map((text, index) => (
+                {[inPlaceMergeSortText, inPlaceMergeText].map((text, index) => (
                     <CodeBlock key={index} code = {text} language="javascript"/>
                 ))}
                 </div>

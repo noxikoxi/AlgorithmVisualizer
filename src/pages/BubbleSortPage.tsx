@@ -1,4 +1,4 @@
-import {bubbleSortDescription, bubbleSortTodo} from "../algorithms/sorting/descriptions";
+import {bubbleSortDescription, bubbleSortText, bubbleSortTodo} from "../algorithms/sorting/descriptions";
 import { bubbleSort } from "../algorithms/sorting/sort";
 import BubbleSortVisualization from "../components/visualizations/BubbleSortVisualization";
 import TestCode from "../components/TestCode";
@@ -15,7 +15,7 @@ const BubbleSortPage = () => {
                 todo={bubbleSortTodo} 
                 timeComplexity={<span>Time Complexity: O( n<span style={{verticalAlign: "super", fontSize: "smaller"}}>2 </span>)</span>} 
                 spaceComplexity={<span>Space Complexity: O(1)</span>} 
-                funcs={[bubbleSort.toString()]} 
+                funcs={[bubbleSortText]} 
             />
             <div id="visualizationContainer">
                 <TestCode sort={bubbleSort}/>
