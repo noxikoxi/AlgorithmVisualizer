@@ -26,7 +26,7 @@ const SelectionSortVisualization = () => {
                 }
             }
             // Swap the elements
-            if (lowestValueIndex != i) {
+            if (lowestValueIndex !== i) {
                 [arr[lowestValueIndex], arr[i]] = [arr[i], arr[lowestValueIndex]];
                 steps.push([...arr]);
             }

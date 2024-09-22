@@ -6,6 +6,8 @@ import BubbleSortPage from "./pages/BubbleSortPage";
 import SelectionSortPage from "./pages/SelectionSortPage";
 import InsertionSortPage from "./pages/InsertionSortPage";
 import MergeSortPage from "./pages/MergeSortPage";
+import QuickSortPage from "./pages/QuickSortPage";
+import HeapSortPage from "./pages/HeapSortPage";
 
 const AppRoutes = () => {
     return (
@@ -15,6 +17,8 @@ const AppRoutes = () => {
             <Route path='/sorting/selection' element={<SortLayout><SelectionSortPage/></SortLayout>}/>
             <Route path='/sorting/insertion' element={<SortLayout><InsertionSortPage/></SortLayout>}/>
             <Route path='/sorting/merge' element={<SortLayout><MergeSortPage/></SortLayout>}/>
+            <Route path='/sorting/quick' element={<SortLayout><QuickSortPage/></SortLayout>}/>
+            <Route path='/sorting/heap' element={<SortLayout><HeapSortPage/></SortLayout>}/>
         </Routes>
     )
 }

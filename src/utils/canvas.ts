@@ -1,4 +1,4 @@
-export const drawSort = (context: CanvasRenderingContext2D, step :number, numbersNum: number, steps: number[][], ) => {
+export const drawSort = (context: CanvasRenderingContext2D, step :number, numbersNum: number, steps: number[][], selectedBarIndex? : number[]) => {
     const canvasWidth = context.canvas.width;
     const canvasHeight = context.canvas.height;
     const barWidth = canvasWidth / numbersNum;
@@ -10,8 +10,15 @@ export const drawSort = (context: CanvasRenderingContext2D, step :number, number
             const barHeight = Math.round((canvasHeight-10) / 100 * element);
             const x = index * barWidth;
             const y = canvasHeight - barHeight;
-
-            context.fillStyle = '#fff';
+            
+            if(selectedBarIndex && index === selectedBarIndex[step])
+            {
+                console.log('siema');
+                context.fillStyle = '#C9CC3F';
+            }else{
+                context.fillStyle = '#fff';
+            }
+            
             context.fillRect(x, y, barWidth, barHeight);
         });
     }

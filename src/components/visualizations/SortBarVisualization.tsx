@@ -6,10 +6,12 @@ type Props = {
     steps: number[][],
     setNumbers: (arr: number[]) => void,
     numbersNum: number,
-    stepDescription? : string
+    stepDescription? : string,
+    selectedBarIndex? : number[]
+
 }
 
-const SortBarVisualization = ({steps, setNumbers, numbersNum, stepDescription} : Props) => {
+const SortBarVisualization = ({steps, setNumbers, numbersNum, stepDescription, selectedBarIndex} : Props) => {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const [step, setStep] = useState<number>(0);
 
@@ -19,7 +21,7 @@ const SortBarVisualization = ({steps, setNumbers, numbersNum, stepDescription} :
         if(canvas) {
             const context = canvas.getContext('2d');
             if(context){
-                drawSort(context, step, numbersNum, steps);
+                drawSort(context, step, numbersNum, steps, selectedBarIndex);
             }
         }
     }, [step, steps])

@@ -6,6 +6,7 @@
   --border: hsl(60, 9.1%, 60%);
   --danger: hsl(353, 61%, 43%);
   --next: hsl(83, 61%, 40%);
+  --selected: #C9CC3F;
 }
 
 html, body, #root, #main {

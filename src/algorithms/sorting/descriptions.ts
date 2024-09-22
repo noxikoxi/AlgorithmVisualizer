@@ -192,3 +192,43 @@ export const inPlaceMergeText = `function inPlaceMerge(arr, start, mid, end){
 
 }
 `;
+
+export const quickSortDescription = "Quick Sort is unstable sorting algorithm based on divide and conquer approach. It selects a pivot element and divide array according to it, inserting pivot in its correct position. After this step quick sort is repeated for two subarrays. Selecting pivot is really important, because bad choice affects the perfomance, however the algorithm would still works. The pivot can be chosen in serveral ways, usually picking the first element, last element, median or random one.";
+export const quickSortTodo = [
+    "The first step is choosing a pivot element",
+    "Divide the array is such way that pivot is in its correct position, all elements on the left are smaller and on the right are greater",
+    "Repeat this procedure revursive untill array is not sorted"
+];
+
+export const quickSortAdditional = `<span>Space complexity differs based on implementation. In presented approach quick sort is made in-place meaning no extra space for subarrays is needed, therefore only recursion stack needs memory. Still in the worst situation, constantly selecting smallest or largest element as pivot space complexiy would be O( n<span style="vertical-align: super; font-size: small;">2</span> ). However space complexity in average case when pivot divides array in half is shown below.</span>.`;
+
+export const quickSortText = `function quickSort(arr, left, right){
+    if(left >= right){
+        return;
+    }
+
+    const partitionIndex = partition(arr, left, right);
+
+    quickSort(arr, left, partitionIndex-1);
+    quickSort(arr, partitionIndex+1, right);
+}
+`;
+
+export const partitionText = `partition(arr, left, right){
+    const pivot = arr[right];
+
+    let i = left-1;
+
+    for(let j = left; j < right; ++j){
+        if(arr[j] < pivot){
+            ++i;
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+    }
+
+    [arr[i+1], arr[right]] = [arr[right], arr[i+1]];
+
+    // Pivot index
+    return i+1;
+}
+`;

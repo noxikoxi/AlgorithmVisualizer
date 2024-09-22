@@ -142,5 +142,36 @@ export function inPlaceMerge(arr:number[], start: number, mid: number, end: numb
         }
         
     }
+}
 
+export function quickSort(arr: number[]){
+    _quickSort(arr, 0, arr.length-1);
+}
+
+function _quickSort(arr: number[], left: number, right: number){
+    if(left >= right){
+        return
+    }
+
+    const partitionIndex = partition(arr, left, right);
+
+    _quickSort(arr, left, partitionIndex-1);
+    _quickSort(arr, partitionIndex+1, right);
+}
+
+function partition(arr: number[], left: number, right: number): number {
+
+    const pivot = arr[right];
+
+    let i = left-1;
+
+    for(let j = left; j < right; ++j){
+        if(arr[j] < pivot){
+            ++i;
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+    }
+
+    [arr[i+1], arr[right]] = [arr[right], arr[i+1]];
+    return i+1;
 }

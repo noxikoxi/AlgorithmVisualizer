@@ -7,11 +7,12 @@ type Props = {
     todo: string[],
     timeComplexity: ReactNode,
     spaceComplexity: ReactNode,
+    additional? : string,
     funcs: string[],
     children?: ReactNode
 }
 
-const SortDescription = ({title, description, todo, funcs, timeComplexity, spaceComplexity, children} : Props) => {
+const SortDescription = ({title, description, todo, funcs, timeComplexity, spaceComplexity, children, additional} : Props) => {
     return (
     <div id="info">
         <div className="description">
@@ -21,6 +22,7 @@ const SortDescription = ({title, description, todo, funcs, timeComplexity, space
             <span>
                 {description}
             </span>
+            {additional ? <div dangerouslySetInnerHTML={{__html : additional}}></div>: ""}
             <div id="complexity">
                 {timeComplexity}
                 {spaceComplexity}

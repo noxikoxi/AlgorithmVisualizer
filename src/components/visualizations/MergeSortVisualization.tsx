@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { generateRandomNumbers } from "../../utils/numbers";
+import ArraysBlocksVisualization from "./ArraysBlocksVisualization";
 
 const MergeSortVisualization = () => {
 
@@ -77,33 +78,19 @@ const MergeSortVisualization = () => {
     }, [numbers]);
     
     return (
-        <div className="canvasContainer">
-            <div className="animationHeader">
-                <h1>Merge Sort Visualization</h1>
-            </div>
-            <div className="numbersAsBlocksContainer">
-                {divideSteps.concat(mergeSteps).map((step, stepIndex) => (
-                    <div key={`row${stepIndex}`} className="row">
-                    {step.map((array, arrayIndex) => (
-                        <div key={`row${stepIndex}array${arrayIndex}`} className="array">
-                            {array.map((elem, index) => (
-                                <div key={`row${stepIndex}array${arrayIndex}elem${index}`} className="block">{elem}</div>
-                            ))}
-                        </div>
-                        ))
-                    }
-                    </div>
-                ))}
-            </div>
-            <div className="buttons" style={{marginTop: "10px"}}>
+        <ArraysBlocksVisualization 
+            divideSteps={divideSteps} 
+            mergeSteps={mergeSteps} 
+            headerText="Merge Sort Visualization"
+            buttons={
                 <button onClick={() => {
                     setNumbers(generateRandomNumbers(numbersNum, -20, 20));
                     }
                 }>
                     Generate
                 </button>
-            </div>
-        </div>
+            }
+        />
     )
 }
 
