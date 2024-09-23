@@ -1,5 +1,3 @@
-import "../styles/mainpage.css";
-
 function MainPage() {
   return (
     <div id="content">

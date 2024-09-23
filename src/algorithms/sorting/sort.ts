@@ -150,7 +150,7 @@ export function quickSort(arr: number[]){
 
 function _quickSort(arr: number[], left: number, right: number){
     if(left >= right){
-        return
+        return;
     }
 
     const partitionIndex = partition(arr, left, right);

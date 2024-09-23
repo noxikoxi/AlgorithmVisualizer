@@ -19,10 +19,10 @@ const SortDescription = ({title, description, todo, funcs, timeComplexity, space
             <p className="title">
                 {title}
             </p>
-            <span>
+            <span style={{textAlign: "justify"}}>
                 {description}
             </span>
-            {additional ? <div dangerouslySetInnerHTML={{__html : additional}}></div>: ""}
+            {additional ? <div style={{textAlign: "justify"}} dangerouslySetInnerHTML={{__html : additional}}></div>: ""}
             <div id="complexity">
                 {timeComplexity}
                 {spaceComplexity}

@@ -1,5 +1,4 @@
 import { Link, useLocation } from "react-router-dom";
-import "../styles/topnav.css";
 
 type Props = {
     links: string[];
@@ -10,7 +9,7 @@ const TopNav = ({links, text} : Props) => {
     const location = useLocation();
 
     return (
-        <div id="topNav">
+        <div id="topNav" className="md-block">
             <ul>
                 {links.map((link, index) => (
                     <Link to={link} key={index} className={location.pathname === link ? "active" : "" }>

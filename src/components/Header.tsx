@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
-import "../styles/header.css";
 import Dropdown from "./ui/dropdown";
+import MobileNav from "./MobileNav";
 
 const Header = () => {
     return (
         <header>
             <a href="/" id="homeText">Algorithm Visualizer</a>
-            <ul id="headerMenu">
+            <ul id="headerMenu" className="md-flex">
                 <li>
                     <Dropdown text="Algorithms">
                         <ul>
@@ -14,15 +14,16 @@ const Header = () => {
                         </ul>
                     </Dropdown>
                 </li>
-                <li>
+                {/* <li>
                     <Dropdown text="Data Structures">
                         <ul>
                             <li>Table</li>
                             <li>List</li>
                         </ul>
                     </Dropdown>
-                </li>
+                </li> */}
             </ul>
+            <MobileNav className="sm"/>
         </header>
     )
 }

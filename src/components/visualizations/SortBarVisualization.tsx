@@ -35,6 +35,7 @@ const SortBarVisualization = ({steps, setNumbers, numbersNum, stepDescription, s
             <canvas ref={canvasRef} width={1000} height={500}>
 
             </canvas>
+            <span style={{fontSize: 20, paddingBottom: "10px"}}>{stepDescription ? stepDescription : "Each step represents swap of the elements."}</span>
             <div className="buttons">
                 <button onClick={() => {
                     setStep(0);
@@ -64,7 +65,6 @@ const SortBarVisualization = ({steps, setNumbers, numbersNum, stepDescription, s
                 <button onClick={() => setStep(0)} className="danger">
                     Reset
                 </button>
-                <span style={{fontSize: 20, paddingLeft: "10px"}}>{stepDescription ? stepDescription : "Each step represents swap of the elements."}</span>
             </div>
         </div>
     )

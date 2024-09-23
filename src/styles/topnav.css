@@ -1,6 +1,7 @@
 div#topNav {
     padding: 10px;
     background-color: var(--secondary);
+    display: none;
 }
 
 div#topNav ul {

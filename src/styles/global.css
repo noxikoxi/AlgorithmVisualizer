@@ -25,6 +25,11 @@ body {
   background-color: var(--background);
 }
 
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -32,5 +37,40 @@ code {
 
 a {
   text-decoration: none;
+}
+
+.sm {
+  display: block;
+}
+
+@media (min-width: 640px){
+  .sm{
+    display: none !important;
+  }
+
+  .md-flex {
+    display: flex !important;
+  }
+  
+  .md-block {
+    display: block !important;
+  }
+
+}
+
+@media (min-width: 1024px){
+  header{
+      position: sticky;
+      top:0;
+      z-index: 10;
+  }
+
+  html, body, #root, #main {
+    height: auto;
+  }
+}
+
+.w-full {
+  width: 100%;
 }
 

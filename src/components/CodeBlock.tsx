@@ -10,11 +10,11 @@ interface CodeBlockProps {
 
 const CodeBlock: React.FC<CodeBlockProps> = ({ code, language}) => {
   return (
-    <div style={{position: "relative"}}>
+    <div className='codeContainer' style={{position: "relative"}}>
       <SyntaxHighlighter language={language} style={okaidia}>
-        {code}
+        {"\n" + code}
       </SyntaxHighlighter>
-      <div style={{position: "absolute", top: 20, left: -30, backgroundColor: "yellow", borderRadius: "5px", padding: "5px 8px 5px 8px", border: "2px solid black"}}>
+      <div style={{position: "absolute", top: 15, right: 5, backgroundColor: "yellow", borderRadius: "5px", padding: "2px 5px 2px 5px", border: "2px solid black"}}>
         <span style={{fontWeight: 500, letterSpacing: "1px", color: "black", fontSize: 22}}>JS</span>
       </div>
     </div>
