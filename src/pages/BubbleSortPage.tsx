@@ -5,8 +5,6 @@ import TestCode from "../components/TestCode";
 import SortDescription from "../components/SortDescription";
 
 const BubbleSortPage = () => {
-
-    
     return (
         <div id="sortContent">
             <SortDescription 
