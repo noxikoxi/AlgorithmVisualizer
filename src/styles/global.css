@@ -10,7 +10,7 @@
 }
 
 html, body, #root, #main {
-  height: 100vh;
+  height: auto;
 }
 
 body {
@@ -28,6 +28,13 @@ body {
 ul {
   list-style-type: none;
   padding: 0;
+}
+
+.centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 code {
@@ -66,7 +73,7 @@ a {
   }
 
   html, body, #root, #main {
-    height: auto;
+    height: 100vh;
   }
 }
 

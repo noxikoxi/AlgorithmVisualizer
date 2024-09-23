@@ -6,7 +6,6 @@ type Props = {
 const Layout = ({children} : Props) => {
     return (
         <div id ="main">
-            <Header/>
             {children}
         </div>
     )
