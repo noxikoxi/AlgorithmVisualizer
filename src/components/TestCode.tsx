@@ -18,7 +18,7 @@ const TestCode = ({ sort, text, inPlaceSort} : Props) => {
             <span style={{fontSize: "larger", fontWeight: '500', letterSpacing: "1px", margin: "15px 0px 15px 0px"}}>{text ? text : "See if this code works!"}</span>
         </div>
         <div id="testCode">
-            <span>[ {randomNumbers.map((item, index) => <span key={index}>{item.toString()} </span>)} ]</span>
+            <span style={{marginLeft: "10px", marginRight: "10px"}}>{randomNumbers.map((item, index) => <span key={index}>{item.toString()} </span>)}</span>
             <div className="buttons">
                 <button onClick={() => setRandomNumbers(generateRandomNumbers(TestCodeNumbersNum, TestCodeNumbersMin, TestCodeNumbersMax))}>
                     Generate
@@ -33,9 +33,9 @@ const TestCode = ({ sort, text, inPlaceSort} : Props) => {
                 }} className="next">
                     Sort
                 </button>
-                <button onClick={() => setRandomNumbers([])} className="danger">
-                    Clear
-                </button>
+                {/*<button onClick={() => setRandomNumbers([])} className="danger">*/}
+                {/*    Clear*/}
+                {/*</button>*/}
             </div>
         </div>
     </>

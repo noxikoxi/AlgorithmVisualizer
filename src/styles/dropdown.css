@@ -50,7 +50,7 @@
 }
 
 .active {
-    border-color: hsl(from var(--border) h s l * 1.2);
+    border-color: white;
 }
 
 .dropdown:hover .dropdownBtn.styled {

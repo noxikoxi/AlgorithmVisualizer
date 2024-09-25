@@ -23,7 +23,7 @@ const Header = () => {
                     </Dropdown>
                 </li> */}
             </ul>
-            <MobileNav className="sm"/>
+            <MobileNav className="sm-block"/>
         </header>
     )
 }

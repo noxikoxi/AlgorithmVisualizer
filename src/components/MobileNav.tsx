@@ -10,7 +10,7 @@ type Props = {
 const MobileNav = ({className} : Props) => {
     return (
         <SideMenu
-            triggerButton={<Menu size={30}/>}
+            triggerButton={<Menu size={25}/>}
             triggerClassName={className}
         >
             <nav id="mobileNavContainer">
@@ -23,6 +23,7 @@ const MobileNav = ({className} : Props) => {
                             <Link to="/sorting/insertion"><li>Insertion Sort</li></Link>
                             <Link to="/sorting/merge"><li>Merge Sort</li></Link>
                             <Link to="/sorting/quick"><li>Quick Sort</li></Link>
+                            <Link to="/sorting/heap"><li>Heap Sort</li></Link>
                         </ul>
                     </Dropdown>
                 </div>

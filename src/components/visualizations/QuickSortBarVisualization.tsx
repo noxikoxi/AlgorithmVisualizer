@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { VisualizationPoints } from "../../algorithms/sorting/config";
 import { generateRandomNumbers } from "../../utils/numbers";
 import SortBarVisualization from "./SortBarVisualization";
+import {partition} from "../../algorithms/sorting/sort";
 
 const QuickSortBarVisualization = () => {
     const numbersNum = VisualizationPoints;
@@ -20,23 +21,6 @@ const QuickSortBarVisualization = () => {
     
         quickSort(arr, left, partitionIndex-1, sortSteps, selectedBar);
         quickSort(arr, partitionIndex+1, right, sortSteps, selectedBar);
-    }
-    
-    function partition(arr: number[], left: number, right: number): number {
-    
-        const pivot = arr[right];
-    
-        let i = left-1;
-    
-        for(let j = left; j < right; ++j){
-            if(arr[j] < pivot){
-                ++i;
-                [arr[i], arr[j]] = [arr[j], arr[i]];
-            }
-        }
-    
-        [arr[i+1], arr[right]] = [arr[right], arr[i+1]];
-        return i+1;
     }
 
     useEffect(() => {

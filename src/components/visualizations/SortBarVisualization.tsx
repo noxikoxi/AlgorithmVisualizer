@@ -29,13 +29,13 @@ const SortBarVisualization = ({steps, setNumbers, numbersNum, stepDescription, s
     return (
         <div className="canvasContainer">
             <div className="animationHeader">
-                <h1>Animation</h1>
+                <h1 className="md-block">Animation</h1>
                 <h1>Step: {step}/{steps.length-1}</h1>
             </div>
             <canvas ref={canvasRef} width={1000} height={500}>
 
             </canvas>
-            <span style={{fontSize: 20, paddingBottom: "10px"}}>{stepDescription ? stepDescription : "Each step represents swap of the elements."}</span>
+            <span style={{fontSize: 20}}>{stepDescription ? stepDescription : "Each step represents swap of the elements."}</span>
             <div className="buttons">
                 <button onClick={() => {
                     setStep(0);
@@ -43,6 +43,9 @@ const SortBarVisualization = ({steps, setNumbers, numbersNum, stepDescription, s
                     }
                 }>
                     Generate
+                </button>
+                <button onClick={() => setStep(0)} className="danger">
+                    Reset
                 </button>
                 <button 
                     className="next" 
@@ -61,9 +64,6 @@ const SortBarVisualization = ({steps, setNumbers, numbersNum, stepDescription, s
                         }
                     }}>
                     Previous
-                </button>
-                <button onClick={() => setStep(0)} className="danger">
-                    Reset
                 </button>
             </div>
         </div>

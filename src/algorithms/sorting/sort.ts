@@ -159,7 +159,7 @@ function _quickSort(arr: number[], left: number, right: number){
     _quickSort(arr, partitionIndex+1, right);
 }
 
-function partition(arr: number[], left: number, right: number): number {
+export function partition(arr: number[], left: number, right: number): number {
 
     const pivot = arr[right];
 
@@ -174,4 +174,38 @@ function partition(arr: number[], left: number, right: number): number {
 
     [arr[i+1], arr[right]] = [arr[right], arr[i+1]];
     return i+1;
+}
+
+export function heapify(arr: number[], heapLen: number, nodeIdx:number){
+    let largest = nodeIdx;
+    const left = 2 * nodeIdx+1;
+    const right = 2 * nodeIdx+2;
+
+    if(left < heapLen && arr[left] > arr[largest]){
+        largest = left;
+    }
+
+    if(right < heapLen && arr[right] > arr[largest]){
+        largest = right;
+    }
+
+    if(largest != nodeIdx){
+        [arr[nodeIdx], arr[largest]] = [arr[largest], arr[nodeIdx]];
+        heapify(arr, heapLen, largest)
+    }
+}
+
+export function buildHeap(arr:number[]){
+    for(let i = Math.floor(arr.length / 2) - 1; i >= 0; --i){
+        heapify(arr, arr.length, i);
+    }
+}
+
+export function heapSort(arr:number[]){
+    buildHeap(arr);
+
+    for(let i = arr.length-1; i >=1; --i){
+        [arr[0], arr[i]] = [arr[i], arr[0]];
+        heapify(arr, i, 0);
+    }
 }

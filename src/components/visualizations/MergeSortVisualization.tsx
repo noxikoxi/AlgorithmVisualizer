@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { generateRandomNumbers } from "../../utils/numbers";
 import ArraysBlocksVisualization from "./ArraysBlocksVisualization";
+import {merge} from "../../algorithms/sorting/sort";
 
 const MergeSortVisualization = () => {
 
@@ -9,34 +10,6 @@ const MergeSortVisualization = () => {
     const [divideSteps, setDivideSteps] = useState<number[][][]>([[[]]]);
     const [mergeSteps, setMergeSteps] = useState<number[][][]>([[[]]]);
 
-    function merge(left: number[], right: number[]) : number[]{
-        const result: number[] = [];
-        let i = 0;
-        let j = 0;
-
-        while(i < left.length && j < right.length){
-            if(left[i] < right[j]){
-                result.push(left[i])
-                ++i;
-            }else{
-                result.push(right[j])
-                ++j;
-            }
-        }
-    
-        // Append remaining elements
-        while(i < left.length){
-            result.push(left[i]);
-            ++i;
-        }
-        while(j < right.length){
-            result.push(right[j]);
-            ++j;
-        }
-        
-        return result;
-    }
-    
     function mergeSort(arr: number[], steps : number[][][], idx: number=1, mSteps : number[][][]) : number[]{
         if(arr.length <= 1){
             return arr

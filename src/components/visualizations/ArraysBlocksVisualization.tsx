@@ -12,7 +12,7 @@ const ArraysBlocksVisualization = ({divideSteps, mergeSteps, headerText, buttons
     return (
         <div className="canvasContainer">
             <div className="animationHeader">
-                <h1>{headerText}</h1>
+                <p>{headerText}</p>
             </div>
             <div className="numbersAsBlocksContainer">
                 {divideSteps.concat(mergeSteps).map((step, stepIndex) => (

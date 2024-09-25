@@ -46,21 +46,29 @@ a {
   text-decoration: none;
 }
 
-.sm {
+.sm-block {
   display: block;
 }
 
+.md-block{
+  display: none;
+}
+
+.md-flex{
+  display: none;
+}
+
 @media (min-width: 640px){
-  .sm{
-    display: none !important;
+  .sm-block{
+    display: none;
   }
 
   .md-flex {
-    display: flex !important;
+    display: flex;
   }
   
   .md-block {
-    display: block !important;
+    display: block;
   }
 
 }

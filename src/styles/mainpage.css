@@ -7,20 +7,6 @@
     color: var(--text);
 }
 
-@media (min-width: 1024px){
-    #content .title {
-        font-size: 45px !important;
-    }
-
-    #content span {
-        font-size: x-large !important;
-    }
-
-    #content .tiny {
-        font-size: large !important;
-    }
-}
-
 #content .tiny {
     font-size: small;
 }
@@ -56,4 +42,18 @@
 
 .hero {
     margin-top: 20px;
+}
+
+@media (min-width: 1024px){
+    #content .title {
+        font-size: 45px;
+    }
+
+    #content span {
+        font-size: x-large;
+    }
+
+    #content .tiny {
+        font-size: large;
+    }
 }

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import SortBarVisualization from "./SortBarVisualization";
 import { generateRandomNumbers } from "../../utils/numbers";
 import { VisualizationPoints } from "../../algorithms/sorting/config";
+import {inPlaceMerge} from "../../algorithms/sorting/sort";
 
 const InPlaceMergeSortVisualization = () => {
     const numbersNum = VisualizationPoints;
@@ -25,38 +26,6 @@ const InPlaceMergeSortVisualization = () => {
         }
     }
 
-    function inPlaceMerge(arr:number[], start: number, mid: number, end: number){
-        let rightIndex = mid+1;
-    
-        // Already sorted
-        if(arr[mid] <= arr[rightIndex]){
-            return;
-        }
-    
-        while(start <= mid && rightIndex <= end){
-    
-            // Correct place
-            if(arr[start] <= arr[rightIndex]){
-                ++start;
-            }else{
-                const val = arr[rightIndex];
-                let index = rightIndex;
-                
-                // Shift elements to the right
-                while (index !== start){
-                    arr[index] = arr[index-1];
-                    --index;
-                }
-    
-                arr[start] = val;
-                ++start;
-                ++mid;
-                ++rightIndex;
-            }
-            
-        }
-    
-    }
 
     useEffect(() => {
         const steps: number[][] = [];

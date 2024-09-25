@@ -200,7 +200,7 @@ export const quickSortTodo = [
     "Repeat this procedure revursive untill array is not sorted"
 ];
 
-export const quickSortAdditional = `<span>Space complexity differs based on implementation. In presented approach quick sort is made in-place meaning no extra space for subarrays is needed, therefore only recursion stack needs memory. Still in the worst situation, constantly selecting smallest or largest element as pivot space complexiy would be O( n<span style="vertical-align: super; font-size: small;">2</span> ). However space complexity in average case when pivot divides array in half is shown below.</span>.`;
+export const quickSortAdditional = `<span>Space complexity differs based on implementation. In presented approach quick sort is made in-place meaning no extra space for subarrays is needed, therefore only recursion stack needs memory. Still in the worst situation, constantly selecting smallest or largest element as pivot space complexity would be O( n<span style="vertical-align: super; font-size: small;">2</span> ). However space complexity in average case when pivot divides array in half is shown below.</span>.`;
 
 export const quickSortText = `function quickSort(arr, left, right){
     if(left >= right){
@@ -232,3 +232,52 @@ export const partitionText = `partition(arr, left, right){
     return i+1;
 }
 `;
+
+export const heapSortDescription = "Heap sort is in-place, comparison-based, not stable sorting algorithm that uses a binary heap data structure to sort elements. It is renowned for its efficiency, particularly when memory usage is critical as it not require additional space proportional to input array. Algorithm is based on building a heap and then sorting elements. ";
+export const heapSortTodo = [
+"The first step is to transfer the input array into a heap. To do this typically we use heapify process",
+"- Select a parent node (root of a subtree)",
+"- Compare parent with its children and swap them if needed (child bigger than parent in max-heap or lower in min-heap)",
+"- Call heapify for modified subtree",
+"Repeat this process for each parent starting from index n/2 - 1 to index 0; it needs to be an integer so use integer division (e.g. 7/3 = 2)",
+"When the heap is build, start building sorted array",
+"- The biggest/lowest element will be on index 0, swap it with the last element",
+"- Then call heapify method on ensure the rest of the array is a heap (call it for array[0:n-1]",
+"Repeat this process until the heap is empty"
+];
+
+export const heapSortText=`function heapSort(arr){
+    buildHeap(arr);
+    
+    for(let i = arr.length-1; i >=1; --i){
+        [arr[0], arr[i]] = [arr[i], arr[0]];
+        heapify(arr, i, 0);
+    }
+}`;
+
+export const buildHeapText=`function buildHeap(arr){
+    for(let i = Math.floor(arr.length / 2) - 1; i >= 0; --i){
+        heapify(arr, arr.length, i);
+    }
+}`;
+
+export const heapifyText = `function heapify(arr, heapLen, nodeIdx){
+    let largest = nodeIdx;
+    const left = 2 * nodeIdx+1;
+    const right = 2 * nodeIdx+2;
+
+    if(left < heapLen && arr[left] > arr[largest]){
+        largest = left;
+    }
+
+    if(right < heapLen && arr[right] > arr[largest]){
+        largest = right;
+    }
+
+    if(largest != nodeIdx){
+        [arr[nodeIdx], arr[largest]] = [arr[largest], arr[nodeIdx]];
+        heapify(arr, heapLen, largest)
+    }
+}`;
+
+export const heapSortAdditional = `<span>Heapify process has O(n) time complexity. To sort elements in different order you should use min-heap instead of max-heap. Space Complexity for heap sort depends on the implementation, it is possible to reduce it to O(1) using iterative approach instead of recursion (needs memory for call stack).</span>`;

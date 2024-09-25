@@ -1,5 +1,9 @@
 header{
     padding: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-bottom: 1px solid var(--border);
     background-color: var(--primary);
     display: flex;
     justify-items: center;
@@ -26,7 +30,6 @@ a#homeText {
 
 #headerMenu {
     margin: 0;
-    display: none;
     flex-direction: row;
     justify-items: center;
     gap: 20px;
