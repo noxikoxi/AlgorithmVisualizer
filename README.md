@@ -2,7 +2,9 @@
 
 ### Algorithm Visualizer is a web app that allows you to learn algorithms and data structures providing visualization supporting your imagination on how different things works.
 
-### App is live on https://algorithmvisualizer-vqlt.onrender.com
+### App is live on:
+- https://algorithmvisualizer-vqlt.onrender.com
+- https://algorithm-visualizer-khaki-ten.vercel.app/
 
 ### Currently only sorting algorithms are implemented, however many more are planned.
 

@@ -189,7 +189,7 @@ export function heapify(arr: number[], heapLen: number, nodeIdx:number){
         largest = right;
     }
 
-    if(largest != nodeIdx){
+    if(largest !== nodeIdx){
         [arr[nodeIdx], arr[largest]] = [arr[largest], arr[nodeIdx]];
         heapify(arr, heapLen, largest)
     }

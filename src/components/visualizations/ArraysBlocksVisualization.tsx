@@ -22,7 +22,7 @@ const ArraysBlocksVisualization = ({divideSteps, mergeSteps, headerText, buttons
                             {array.map((elem, index) => (
                                 <div 
                                     key={`row${stepIndex}array${arrayIndex}elem${index}`} 
-                                    className={selectedBlocksIndexes === "last" && array.length > 1 &&  index === array.length-1 && stepIndex != divideSteps.length ? "block selected" : "block"}
+                                    className={selectedBlocksIndexes === "last" && array.length > 1 &&  index === array.length-1 && stepIndex !== divideSteps.length ? "block selected" : "block"}
                                 >
                                     {elem}
                                 </div>

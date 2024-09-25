@@ -20,8 +20,8 @@ const MergeSortPage = () => {
                 <p className="title">
                     In-Place Merge Sort
                 </p>
-                <span>{inPlaceMergeSortDescription}</span>
-                <div dangerouslySetInnerHTML={{__html : inPlaceMergeSortAdditional}}/>
+                <span style={{textAlign: "justify"}}>{inPlaceMergeSortDescription}</span>
+                <div style={{textAlign: "justify"}} dangerouslySetInnerHTML={{__html : inPlaceMergeSortAdditional}}/>
                 <div className="code">
                 {[inPlaceMergeSortText, inPlaceMergeText].map((text, index) => (
                     <CodeBlock key={index} code = {text} language="javascript"/>
