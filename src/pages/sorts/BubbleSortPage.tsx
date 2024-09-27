@@ -1,8 +1,8 @@
-import {bubbleSortDescription, bubbleSortText, bubbleSortTodo} from "../algorithms/sorting/descriptions";
-import { bubbleSort } from "../algorithms/sorting/sort";
-import BubbleSortVisualization from "../components/visualizations/BubbleSortVisualization";
-import TestCode from "../components/TestCode";
-import SortDescription from "../components/SortDescription";
+import {bubbleSortDescription, bubbleSortText, bubbleSortTodo} from "../../algorithms/sorting/descriptions";
+import { bubbleSort } from "../../algorithms/sorting/sort";
+import BubbleSortVisualization from "../../components/visualizations/BubbleSortVisualization";
+import TestCode from "../../components/TestCode";
+import SortDescription from "../../components/SortDescription";
 
 const BubbleSortPage = () => {
     return (

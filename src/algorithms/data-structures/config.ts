@@ -1,0 +1,1 @@
+export const DS = ["Array", "List", "Graph", "Stack", "Queue", "Heap", "Tree"];

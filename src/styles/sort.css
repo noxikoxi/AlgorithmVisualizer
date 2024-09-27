@@ -9,10 +9,6 @@
     min-width: 0;
 }
 
-.codeContainer {
-    width: 100%;
-}
-
 #info {
     display: flex;
     flex-direction: column;
@@ -109,13 +105,6 @@ pre {
     font-weight: 500;
 }
 
-.title {
-    margin: 0;
-    font-size: xx-large;
-    letter-spacing: 2px;
-    font-weight: 500;
-}
-
 #visualizationContainer {
     width: 100%;
     height: 100%;
@@ -207,13 +196,8 @@ canvas {
         overflow-y: auto;
     }
 
-
     .animationHeader p {
         font-size: xx-large;
-    }
-
-    .codeContainer{
-        width: auto;
     }
 
     .canvasContainer {

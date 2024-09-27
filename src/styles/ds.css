@@ -1,0 +1,33 @@
+.text-block{
+    width: auto;
+    padding: 10px;
+    text-align: justify;
+    font-size: large;
+}
+
+.elem, .array{
+    border-radius: 10px;
+}
+
+.elem{
+    position: relative;
+    padding: 5px;
+    background-color: var(--primary);
+    font-size: large;
+}
+
+
+.array{
+    border: 1px solid var(--border);
+    padding: 5px;
+}
+
+@media (min-width: 1024px){
+    .text-block{
+        width: 60%;
+    }
+
+    .elem{
+        font-size: xx-large;
+    }
+}

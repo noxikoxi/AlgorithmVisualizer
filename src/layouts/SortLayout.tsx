@@ -1,9 +1,10 @@
 import { sorts } from "../algorithms/sorting/config";
 import Header from "../components/Header";
 import TopNav from "../components/TopNav";
+import {ReactNode} from "react";
 
 type Props = {
-    children : React.ReactNode
+    children : ReactNode
 }
 const SortLayout = ({children} : Props) => {
     

@@ -1,11 +1,11 @@
-import SortDescription from "../components/SortDescription";
+import SortDescription from "../../components/SortDescription";
 import {
     buildHeapText, heapifyText, heapSortAdditional,
     heapSortDescription, heapSortText, heapSortTodo,
-} from "../algorithms/sorting/descriptions";
-import TestCode from "../components/TestCode";
-import {heapSort} from "../algorithms/sorting/sort";
-import HeapSortBarVisualization from "../components/visualizations/HeapSortBarVisualization";
+} from "../../algorithms/sorting/descriptions";
+import TestCode from "../../components/TestCode";
+import {heapSort} from "../../algorithms/sorting/sort";
+import HeapSortBarVisualization from "../../components/visualizations/HeapSortBarVisualization";
 
 const HeapSortPage = () => {
     return (

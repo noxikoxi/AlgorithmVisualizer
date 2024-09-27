@@ -1,9 +1,9 @@
-import { partitionText, quickSortAdditional, quickSortDescription, quickSortText, quickSortTodo } from "../algorithms/sorting/descriptions";
-import { quickSort } from "../algorithms/sorting/sort";
-import SortDescription from "../components/SortDescription";
-import TestCode from "../components/TestCode";
-import QuickSortBarVisualization from "../components/visualizations/QuickSortBarVisualization";
-import QuickSortVisualization from "../components/visualizations/QuickSortVisualization";
+import { partitionText, quickSortAdditional, quickSortDescription, quickSortText, quickSortTodo } from "../../algorithms/sorting/descriptions";
+import { quickSort } from "../../algorithms/sorting/sort";
+import SortDescription from "../../components/SortDescription";
+import TestCode from "../../components/TestCode";
+import QuickSortBarVisualization from "../../components/visualizations/QuickSortBarVisualization";
+import QuickSortVisualization from "../../components/visualizations/QuickSortVisualization";
 
 const QuickSortPage = () => {
     return (

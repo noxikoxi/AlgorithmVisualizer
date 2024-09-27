@@ -1,8 +1,8 @@
-import { insertionSortDescription, insertionSortText, insertionSortTodo } from "../algorithms/sorting/descriptions";
-import { insertionSort } from "../algorithms/sorting/sort";
-import SortDescription from "../components/SortDescription";
-import TestCode from "../components/TestCode";
-import InsertionSortVisualization from "../components/visualizations/InsertionSortVisualization";
+import { insertionSortDescription, insertionSortText, insertionSortTodo } from "../../algorithms/sorting/descriptions";
+import { insertionSort } from "../../algorithms/sorting/sort";
+import SortDescription from "../../components/SortDescription";
+import TestCode from "../../components/TestCode";
+import InsertionSortVisualization from "../../components/visualizations/InsertionSortVisualization";
 
 const InsertionSortPage = () => {
     return (

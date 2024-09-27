@@ -1,5 +1,4 @@
 import { ArrowRight } from "lucide-react";
-import { relative } from "path";
 import { ReactNode, useRef, useState } from "react";
 
 type Props = {
@@ -14,14 +13,12 @@ const SideMenu = ({triggerButton, children, triggerClassName} : Props) => {
     const sideMenuContent = useRef<HTMLDivElement | null>(null);
 
     const show = () => {
-        sideMenuContent.current?.classList.remove("hide");
         sideMenuContent.current?.classList.add("show");
         setIsShowed(true)
     }
 
     const hide = () => {
         sideMenuContent.current?.classList.remove("show");
-        sideMenuContent.current?.classList.add("hide");
         setIsShowed(false)
     }
 

@@ -9,6 +9,7 @@ header{
     justify-items: center;
     justify-content: space-around;
     color: var(--text);
+    flex-shrink: 0;
 }
 
 header a {
@@ -20,12 +21,6 @@ a#homeText {
     font-size: x-large;
     letter-spacing: 2px;
     font-weight: 500;
-}
-
-@media (min-width: 1024px){
-    a#homeText {
-        font-size: xx-large;
-    }
 }
 
 #headerMenu {
@@ -41,10 +36,20 @@ a#homeText {
     justify-items: center;
     align-items: center;
 }
+.mobileNavContent{
+    margin-top: 5px;;
+}
 
 .mobileNavContent p {
-    font-weight: 500;
-    font-size: x-large;
+    margin: 10px;
+    font-weight: bold;
+    font-size: large;
     letter-spacing: 1px;
+}
+
+@media (min-width: 1024px){
+    a#homeText {
+        font-size: xx-large;
+    }
 }
 

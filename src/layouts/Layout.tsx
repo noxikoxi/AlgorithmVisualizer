@@ -1,11 +1,12 @@
-import Header from "../components/Header";
+import {ReactNode} from "react";
 
 type Props = {
-    children : React.ReactNode
+    children : ReactNode
 }
 const Layout = ({children} : Props) => {
     return (
         <div id ="main">
+
             {children}
         </div>
     )

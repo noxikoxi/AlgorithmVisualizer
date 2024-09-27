@@ -1,0 +1,14 @@
+.codeContainer {
+    width: 100%;
+    font-size: small;
+}
+
+@media (min-width: 640px){
+    .codeContainer{
+        width: auto;
+    }
+
+    .codeContainer {
+        font-size: medium;
+    }
+}

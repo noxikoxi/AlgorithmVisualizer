@@ -1,8 +1,8 @@
-import { selectionSortDescription, selectionSortText, selectionSortTodo } from "../algorithms/sorting/descriptions";
-import { selectionSort } from "../algorithms/sorting/sort";
-import SelectionSortVisualization from "../components/visualizations/SelectionSortVisualization";
-import TestCode from "../components/TestCode";
-import SortDescription from "../components/SortDescription";
+import { selectionSortDescription, selectionSortText, selectionSortTodo } from "../../algorithms/sorting/descriptions";
+import { selectionSort } from "../../algorithms/sorting/sort";
+import SelectionSortVisualization from "../../components/visualizations/SelectionSortVisualization";
+import TestCode from "../../components/TestCode";
+import SortDescription from "../../components/SortDescription";
 
 const SelectionSortPage = () => {
     return (

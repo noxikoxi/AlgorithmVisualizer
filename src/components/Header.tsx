@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Dropdown from "./ui/dropdown";
 import MobileNav from "./MobileNav";
+import {DS} from "../algorithms/data-structures/config";
 
 const Header = () => {
     return (
@@ -10,18 +11,19 @@ const Header = () => {
                 <li>
                     <Dropdown text="Algorithms">
                         <ul>
-                            <Link to="/sorting/bubble"><li>Sorting</li></Link>
+                            <li><Link to="/sorting/bubble">Sorting</Link></li>
                         </ul>
                     </Dropdown>
                 </li>
-                {/* <li>
+                 <li>
                     <Dropdown text="Data Structures">
                         <ul>
-                            <li>Table</li>
-                            <li>List</li>
+                            {DS.map((elem, index) => (
+                                <li key={elem + index.toString()}><Link to={`/ds/${elem.toLowerCase()}`}>{elem}</Link></li>
+                            ))}
                         </ul>
                     </Dropdown>
-                </li> */}
+                </li>
             </ul>
             <MobileNav className="sm-block"/>
         </header>

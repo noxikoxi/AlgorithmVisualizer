@@ -1,6 +1,8 @@
 import React from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import {okaidia} from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { JavascriptOriginal } from 'devicons-react';
+import { CplusplusOriginal } from 'devicons-react';
 
 
 interface CodeBlockProps {
@@ -14,8 +16,8 @@ const CodeBlock: React.FC<CodeBlockProps> = ({ code, language}) => {
       <SyntaxHighlighter language={language} style={okaidia}>
         {"\n" + code}
       </SyntaxHighlighter>
-      <div style={{position: "absolute", top: 15, right: 5, backgroundColor: "yellow", borderRadius: "5px", padding: "2px 5px 2px 5px", border: "2px solid black"}}>
-        <span style={{fontWeight: 500, letterSpacing: "1px", color: "black", fontSize: 22}}>JS</span>
+      <div style={{position: "absolute", top: 15, right: 5}}>
+          {language === "javascript" ? <JavascriptOriginal size={40}/> : <CplusplusOriginal size={40}/>}
       </div>
     </div>
   );

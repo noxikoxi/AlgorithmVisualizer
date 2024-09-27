@@ -7,6 +7,8 @@ import "./styles/mainpage.css";
 import "./styles/header.css";
 import "./styles/topnav.css";
 import "./styles/dropdown.css";
+import "./styles/ds.css";
+import "./styles/code.css";
 import AppRoutes from './AppRoutes';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter as Router } from 'react-router-dom';

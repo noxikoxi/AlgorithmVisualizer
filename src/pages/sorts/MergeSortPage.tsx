@@ -1,10 +1,10 @@
-import { inPlaceMergeSortAdditional, inPlaceMergeSortDescription, inPlaceMergeSortText, inPlaceMergeText, mergeSortDescription, mergeSortText, mergeSortTodo, mergeText } from "../algorithms/sorting/descriptions";
-import {inPlaceMergeSort, mergeSort } from "../algorithms/sorting/sort";
-import CodeBlock from "../components/CodeBlock";
-import SortDescription from "../components/SortDescription";
-import TestCode from "../components/TestCode";
-import InPlaceMergeSortVisualization from "../components/visualizations/InPlaceMergeSortVisualization";
-import MergeSortVisualization from "../components/visualizations/MergeSortVisualization";
+import { inPlaceMergeSortAdditional, inPlaceMergeSortDescription, inPlaceMergeSortText, inPlaceMergeText, mergeSortDescription, mergeSortText, mergeSortTodo, mergeText } from "../../algorithms/sorting/descriptions";
+import {inPlaceMergeSort, mergeSort } from "../../algorithms/sorting/sort";
+import CodeBlock from "../../components/CodeBlock";
+import SortDescription from "../../components/SortDescription";
+import TestCode from "../../components/TestCode";
+import InPlaceMergeSortVisualization from "../../components/visualizations/InPlaceMergeSortVisualization";
+import MergeSortVisualization from "../../components/visualizations/MergeSortVisualization";
 
 const MergeSortPage = () => {
     return (

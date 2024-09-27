@@ -29,30 +29,17 @@
 }
 
 
-@keyframes slideIn {
+@keyframes growWide {
     from {
-        width: 0%;
+        width: 0;
     }
     to{
         width: 50%;
-    }
-}
-
-@keyframes slideOut {
-    from {
-        width: 50%;
-    }
-    to{
-        width: 0%;
     }
 }
 
 .show {
-    animation: slideIn 0.5s forwards;
+    animation: growWide 0.5s forwards;
     padding: 20px;
     display: block !important;
-}
-
-.hide {
-    animation: slideOut 0.5s forwards;
 }
