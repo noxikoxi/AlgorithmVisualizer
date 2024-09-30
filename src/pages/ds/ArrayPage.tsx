@@ -1,13 +1,11 @@
-import ArrayVisualization from "../../components/visualizations/ArrayVisualization";
+import ArrayVisualization from "../../components/visualizations/ds/ArrayVisualization";
 import DsComplexity from "../../components/DsComplexity";
 import CodeBlock from "../../components/CodeBlock";
 import {arrayExample} from "../../algorithms/data-structures/examples";
 
 const ArrayPage = () => {
     return (
-        <div className="centered h-full" style={{overflow: "auto"}}>
-            <div className="md-w-80 centered bg-secondary h-full" style={{overflow: "auto", width: "100%"}}>
-                <span className="title" style={{display: "flex", gap:10}}><span className="md-block">Data Structures - </span>Array</span>
+            <>
                 <span className="text-block">An array (or a table) is the simplest possible data structure. It is used to store a specific group of elements. You can imagine it as a collection of elements (they are stored at contiguous memory location). Each element has a specific index, from which a reference to it can be obtained. Because an array is contiguous memory location its size should be known in initialization. We cannot exceed or shrink an array, the only possibility is to create new array and copy existing elements to it. Arrays can stored element of any type. </span>
                 <p>Array Visualization</p>
                 <ArrayVisualization numberOfElements={10}/>
@@ -15,12 +13,9 @@ const ArrayPage = () => {
                 <DsComplexity access={<span>O(1)</span>} search={<span>O(n)</span>} insertion={<span>O(n)</span>} deletion={<span>O(n)</span>}/>
                 <span className="text-block">Time Complexity for insertion is O(n), because when we want to insert an element at a specific index, the rest of elements need to be shifted to right resulting in the worst case scenario shifting every element. Without shifting elements it's O(1). The same goes for deleting elements.</span>
                 <p>Code Example</p>
-                {/*<div className="code">*/}
-                    <CodeBlock code={arrayExample} language="cpp"/>
-                {/*</div>*/}
+                <CodeBlock code={arrayExample} language="cpp"/>
                 <span className="text-block">Remember that indexing elements lower that 0 and greater that declared array size is possible. You will changed what is saved in next/previous memory block. Be aware that your index must be greater or equal 0 and never bigger than array's maximum size. </span>
-            </div>
-        </div>
+            </>
     )
 }
 

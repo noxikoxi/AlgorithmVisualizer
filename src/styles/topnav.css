@@ -1,17 +1,15 @@
-div#topNav {
-    padding: 10px;
-    background-color: var(--secondary);
+#topNav {
+    border-bottom: 1px solid var(--border);
 }
 
-div#topNav ul {
+#topNav ul {
     display: flex;
     flex-direction: row;
     gap:20px;
     justify-content: center;
-     
 }
 
-div#topNav ul a {
+#topNav ul a {
     color: var(--text);
     font-size: large;
 }
@@ -21,6 +19,11 @@ div#topNav ul a:hover{
 }
 
 a.active {
-    /* font-weight: bold; */
     text-decoration: underline;
+}
+
+@media(min-width: 1024px){
+    #topNav ul {
+        gap: 30px;
+    }
 }

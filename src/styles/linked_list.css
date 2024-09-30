@@ -1,0 +1,171 @@
+.linkedBlockContainer{
+    position: relative;
+    height: 35px;
+    width: 35px;
+}
+
+.linkedBlock{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    font-size: medium;
+}
+
+.linkedBlock span{
+    padding-right: 10%;
+}
+
+.linkedBlock::after{
+    content:' ';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20%;
+    height: 100%;
+    background-color: var(--next);
+}
+
+.doubleLinkedBLock::before{
+    content:' ';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20%;
+    height: 100%;
+    background-color: var(--danger);
+}
+
+.doubleLinkedBLock span {
+    padding-left: 10%;
+}
+
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    left: -10px;
+    width: 10px;
+    height: 2px;
+    background-color: var(--next);
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.revertedArrow {
+    left: -3px;
+    background-color: var(--danger);
+}
+
+.arrow::after{
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    right: -10px;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 10px solid var(--next);;
+}
+
+.revertedArrow::after{
+    border-left: 10px solid var(--danger);;
+}
+
+.listNull{
+    padding-left: 10px;
+}
+
+.listRef{
+    padding-right: 10px;
+}
+
+
+@media(min-width: 640px){
+    .linkedBlockContainer{
+        height: 50px;
+        width: 50px;
+    }
+
+    .listNull{
+        padding-left: 15px;
+    }
+
+    .listRef{
+        padding-right: 15px;
+    }
+
+    .linkedBlock{
+        font-size: large;
+    }
+
+    .arrow  {
+        left: -15px;
+        width: 20px;
+        height: 4px;
+    }
+
+    .revertedArrow {
+        left: -10px;
+    }
+
+    .arrow::after {
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+        border-left: 12px solid var(--next);
+    }
+
+    .revertedArrow::after{
+        border-left: 12px solid var(--danger);;
+    }
+
+}
+
+@media(min-width: 1024px){
+    .linkedBlockContainer{
+        height: 70px;
+        width: 70px;
+
+    }
+
+    .listNull{
+        padding-left: 22px;
+    }
+
+    .listRef{
+        padding-right: 20px;
+    }
+
+    .linkedBlock{
+        font-size: x-large;
+    }
+
+    .arrow {
+        left: -16px;
+        width: 25px;
+        height: 5px;
+    }
+
+    .revertedArrow {
+        left: -10px;
+    }
+
+
+    .arrow::after {
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-left: 15px solid var(--next) ;
+    }
+
+    .revertedArrow::after{
+        border-left: 15px solid var(--danger);;
+    }
+}

@@ -9,6 +9,7 @@ import "./styles/topnav.css";
 import "./styles/dropdown.css";
 import "./styles/ds.css";
 import "./styles/code.css";
+import "./styles/linked_list.css";
 import AppRoutes from './AppRoutes';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter as Router } from 'react-router-dom';

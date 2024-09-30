@@ -43,6 +43,23 @@ ul {
   padding: 0;
 }
 
+ol{
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin-top: 5px;
+  gap:5px;
+  font-size: large;
+  align-items: center;
+}
+
+ol li{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap:5px;
+}
+
 .centered {
   display: flex;
   flex-direction: column;
@@ -81,8 +98,12 @@ a {
   background-color: var(--primary);
 }
 
+.bg{
+  background-color: var(--background);
+}
+
 .rounded{
-  border-radius: 1em;
+  border-radius: 5px;
 }
 
 .w-full {
@@ -91,6 +112,30 @@ a {
 
 .h-full{
   height: 100%;
+}
+
+.capitalized{
+  text-transform: capitalize;
+}
+
+.bolded{
+  font-weight: 500;
+}
+
+.col{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  gap:5px;
+}
+
+.bordered {
+  border: 1px solid var(--border);
 }
 
 

@@ -1,4 +1,4 @@
-import {generateRandomNumbers} from "../../utils/numbers";
+import {generateRandomNumbers} from "../../../utils/numbers";
 
 type Props = {
     numberOfElements: number

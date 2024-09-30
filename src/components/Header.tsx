@@ -19,7 +19,7 @@ const Header = () => {
                     <Dropdown text="Data Structures">
                         <ul>
                             {DS.map((elem, index) => (
-                                <li key={elem + index.toString()}><Link to={`/ds/${elem.toLowerCase()}`}>{elem}</Link></li>
+                                <Link key={elem + index.toString()} to={`/ds/${elem.toLowerCase()}`}><li >{elem}</li></Link>
                             ))}
                         </ul>
                     </Dropdown>
