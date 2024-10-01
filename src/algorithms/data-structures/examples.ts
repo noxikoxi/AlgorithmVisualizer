@@ -22,7 +22,7 @@ int main() {
     for (int i = 0; i < len; i++) {
         sum += arr[i];
     }
-    cout << "Sum: " << sum << endl;
+    cout << "Sum: " << sum << "\\n";
     // **************
     // Output
     // Sum: 150
@@ -128,7 +128,7 @@ public:
     // Function to delete a node from the beginning
     void deleteAtBeginning() {
         if (head == nullptr) {
-            cout << "List is empty" << endl;
+            cout << "List is empty" << "\\n";
             return;
         }
         if (head->next == head) {
@@ -148,7 +148,7 @@ public:
     // Function to delete a node from the end
     void deleteAtEnd() {
         if (head == nullptr) {
-            cout << "List is empty" << endl;
+            cout << "List is empty" << "\\n";
             return;
         }
         if (head->next == head) {
@@ -167,7 +167,7 @@ public:
     // Function to delete a node at a specific position (1-based index)
     void deleteAtPosition(int pos) {
         if (head == nullptr) {
-            cout << "List is empty" << endl;
+            cout << "List is empty" << "\\n";
             return;
         }
         if (pos <= 1) {
@@ -189,10 +189,9 @@ public:
         delete temp;
     }
 
-    // Function to display the list
     void display() {
         if (head == nullptr) {
-            cout << "List is empty" << endl;
+            cout << "List is empty" << "\\n";
             return;
         }
         Node* temp = head;
@@ -224,7 +223,6 @@ int main() {
     // Insert at a specific position
     list.insertAtPosition(25, 3);
 
-    // Displaying the list
     cout << "List after insertion: ";
     list.display();
     // List after insertion: 20 10 25 30 40 
@@ -278,7 +276,7 @@ public:
 
     void push(int data) {
         if (isFull()) {
-            cout << "Stack overflow" << endl;
+            cout << "Stack overflow" << "\\n";
             return;
         }
         top++;
@@ -287,7 +285,7 @@ public:
 
     int pop() {
         if (isEmpty()) {
-            cout << "Stack is empty" << endl;
+            cout << "Stack is empty" << "\\n";
             return -1; // Error indicator
         }
         int poppedElement = array[top];
@@ -297,7 +295,7 @@ public:
 
     int peek() {
         if (isEmpty()) {
-            cout << "Stack is empty" << endl;
+            cout << "Stack is empty" << "\\n";
             return -1; // Error indicator
         }
         return array[top];
@@ -311,11 +309,11 @@ int main() {
     myStack.push(20);
     myStack.push(30);
 
-    cout << "Top element: " << myStack.peek() << endl;
+    cout << "Top element: " << myStack.peek() << "\\n";
     // Top element: 30
 
     while (!myStack.isEmpty()) {
-        cout << "Popped: " << myStack.pop() << endl;
+        cout << "Popped: " << myStack.pop() << "\\n";
     }
     // Popped: 30
     // Popped: 20
@@ -383,11 +381,11 @@ int main() {
     myStack.push(20);
     myStack.push(30);
 
-    cout << "Top element: " << myStack.peek() << endl;
+    cout << "Top element: " << myStack.peek() << "\\n";
     // Top element: 30
 
     while (!myStack.isEmpty()) {
-        cout << "Popped: " << myStack.pop() << endl;
+        cout << "Popped: " << myStack.pop() << "\\n";
     }
     // Popped: 30
     // Popped: 20
@@ -395,3 +393,209 @@ int main() {
 
     return 0;
 }`;
+
+export const queueArrayExample = `#include <iostream>
+using namespace std;
+
+class Queue {
+private:
+    int *arr;      // Array to store queue elements
+    int front;     // Points to the front of the queue
+    int rear;      // Points to the rear of the queue
+    int capacity;  // Maximum capacity of the queue
+    int size;      // Current size of the queue
+
+public:
+    // Constructor
+    Queue(int capacity) {
+        this->capacity = capacity;
+        arr = new int[capacity];
+        front = 0;
+        rear = -1;
+        size = 0;
+    }
+
+    // Destructor to free memory
+    ~Queue() {
+        delete[] arr;
+    }
+
+    void enqueue(int value) {
+        if (isFull()) {
+            cout << "Queue is full! Cannot enqueue " << value << "\\n";
+            return;
+        }
+        rear = (rear + 1) % capacity;  // Circular increment
+        arr[rear] = value;
+        size++;
+        cout << "Enqueued " << value << "\\n";
+    }
+
+    int dequeue() {
+        if (isEmpty()) {
+            cout << "Queue is empty! Cannot dequeue." << "\\n";
+            return -1;  // Return -1 to indicate underflow
+        }
+        int value = arr[front];
+        front = (front + 1) % capacity;  // Circular increment
+        size--;
+        cout << "Dequeued " << value << "\\n";
+        return value;
+    }
+
+    int peek() {
+        if (isEmpty()) {
+            cout << "Queue is empty!" << "\\n";
+            return -1;
+        }
+        return arr[front];
+    }
+
+    bool isEmpty() {
+        return size == 0;
+    }
+
+    bool isFull() {
+        return size == capacity;
+    }
+
+    int getSize() {
+        return size;
+    }
+};
+
+int main() {
+    // Create a queue of capacity 5
+    Queue q(5);
+
+    q.enqueue(10);
+    q.enqueue(20);
+    q.enqueue(30);
+    q.enqueue(40);
+    q.enqueue(50);
+
+    cout << "Front element is: " << q.peek() << "\\n";
+    //Front element is: 10
+    
+    q.dequeue();
+    q.dequeue();
+
+    cout << "Front element after dequeue: " << q.peek() << "\\n";
+    // Front element after dequeue: 30
+
+    q.enqueue(60);
+
+    while (!q.isEmpty()) {
+        q.dequeue();
+    }
+
+    q.dequeue();  // Trying to dequeue from an empty queue
+    // Queue is empty! Cannot dequeue.
+
+    return 0;
+}`;
+export const queueLinkedListExample =`#include <iostream>
+using namespace std;
+
+// Node structure
+struct Node {
+    int data;
+    Node* next;
+};
+
+class Queue {
+private:
+    Node* front;  // Points to the front of the queue
+    Node* rear;   // Points to the rear of the queue
+
+public:
+    // Constructor
+    Queue() {
+        front = nullptr;
+        rear = nullptr;
+    }
+
+    // Destructor to free memory
+    ~Queue() {
+        while (!isEmpty()) {
+            dequeue();
+        }
+    }
+
+    void enqueue(int value) {
+        Node* temp = new Node();
+        temp->data = value;
+        temp->next = nullptr;
+        
+        if (rear == nullptr) {
+            // Queue is empty, so both front and rear are the same
+            front = rear = temp;
+        } else {
+            rear->next = temp;
+            rear = temp;
+        }
+        cout << "Enqueued " << value << endl;
+    }
+
+    int dequeue() {
+        if (isEmpty()) {
+            cout << "Queue is empty! Cannot dequeue." << endl;
+            return -1; // Error Indicator
+        }
+        
+        Node* temp = front;
+        int value = temp->data;
+        front = front->next;
+        
+        if (front == nullptr) {
+            rear = nullptr;  // Queue is empty
+        }
+        
+        delete temp;
+        cout << "Dequeued " << value << endl;
+        return value;
+    }
+
+    int peek() {
+        if (isEmpty()) {
+            cout << "Queue is empty!" << endl;
+            return -1;
+        }
+        return front->data;
+    }
+
+    bool isEmpty() {
+        return front == nullptr;
+    }
+};
+
+int main() {
+    Queue q;
+
+    q.enqueue(10);
+    q.enqueue(20);
+    q.enqueue(30);
+    q.enqueue(40);
+
+    cout << "Front element is: " << q.peek() << endl;
+    // Front element is: 10
+
+    q.dequeue();
+    q.dequeue();
+
+    cout << "Front element after dequeue: " << q.peek() << endl;
+    // Front element after dequeue: 30
+    
+    q.enqueue(50);
+    q.enqueue(60);
+
+    while (!q.isEmpty()) {
+        q.dequeue();
+    }
+
+    q.dequeue();  // Trying to dequeue from an empty queue
+    // Queue is empty! Cannot dequeue.
+
+    return 0;
+}
+`;
