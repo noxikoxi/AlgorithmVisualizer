@@ -6,7 +6,7 @@ const StackVisualization = () => {
     const elements = generateRandomNumbers(4, 10, 99);
 
     return (
-        <div className="row" style={{gap: 50, alignItems: "center", marginTop: 20}}>
+        <div className="row stackVisualizationContainer">
             <div className="bordered stackContainer">
                 <span className="topIndicator">Top</span>
                 <div className="col" style={{gap:2}}>

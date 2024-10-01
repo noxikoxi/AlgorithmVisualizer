@@ -22,16 +22,36 @@
     color: transparent;
 }
 
-.topIndicator{
+.topIndicator, .frontIndicator{
     position: absolute;
     top: -30px;
+}
+
+.topIndicator{
     left: 20%;
+}
+
+.frontIndicator{
+    left: 0;
+}
+
+.stackVisualizationContainer{
+    gap: 20px;
+    align-items: center;
+    margin-top: 20px;
 }
 
 .stackContainer{
     border-top: none;
     padding: 4px;
     position: relative;
+}
+
+.queueContainer{
+    padding: 4px;
+    position: relative;
+    border-left: none;
+    border-right: none;
 }
 
 
@@ -49,4 +69,7 @@
         font-size: xx-large;
     }
 
+    .stackVisualizationContainer{
+        gap: 50px;
+    }
 }
