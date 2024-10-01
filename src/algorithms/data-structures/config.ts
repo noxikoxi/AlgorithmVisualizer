@@ -1,4 +1,4 @@
-export const DS = ["Array", "List", "Graph", "Stack", "Queue", "Heap", "Tree"];
+export const DS = ["Array", "List", "Stack", "Queue", "Heap", "Graph", "Tree"];
 
 export const linkedListComplexity = [
     {

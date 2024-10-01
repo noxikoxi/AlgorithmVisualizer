@@ -138,6 +138,11 @@ a {
   border: 1px solid var(--border);
 }
 
+.justify-between{
+  display: flex;
+  justify-content: space-between;
+}
+
 
 @media (min-width: 640px){
   .sm-block{

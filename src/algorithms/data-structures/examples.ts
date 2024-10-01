@@ -227,19 +227,171 @@ int main() {
     // Displaying the list
     cout << "List after insertion: ";
     list.display();
+    // List after insertion: 20 10 25 30 40 
 
     // Deleting elements
     list.deleteAtBeginning();
     cout << "List after deleting from beginning: ";
     list.display();
+    // List after deleting from beginning: 10 25 30 40 
 
     list.deleteAtEnd();
     cout << "List after deleting from end: ";
     list.display();
+    // List after deleting from end: 10 25 30 
 
     list.deleteAtPosition(2);
     cout << "List after deleting at position 2: ";
     list.display();
+    // List after deleting at position 2: 10 30 
+
+    return 0;
+}`;
+
+export const stackArrayExample = `#include <iostream>
+using namespace std;
+
+class Stack {
+private:
+    int capacity;
+    int top;
+    int* array;
+
+public:
+    Stack(int size) {
+        capacity = size;
+        top = -1;
+        array = new int[capacity];
+    }
+
+    ~Stack() {
+        delete[] array;
+    }
+
+    bool isFull() {
+        return top == capacity - 1;
+    }
+
+    bool isEmpty() {
+        return top == -1;
+    }
+
+    void push(int data) {
+        if (isFull()) {
+            cout << "Stack overflow" << endl;
+            return;
+        }
+        top++;
+        array[top] = data;
+    }
+
+    int pop() {
+        if (isEmpty()) {
+            cout << "Stack is empty" << endl;
+            return -1; // Error indicator
+        }
+        int poppedElement = array[top];
+        top--;
+        return poppedElement;
+    }
+
+    int peek() {
+        if (isEmpty()) {
+            cout << "Stack is empty" << endl;
+            return -1; // Error indicator
+        }
+        return array[top];
+    }
+};
+
+int main() {
+    Stack myStack(5);
+
+    myStack.push(10);
+    myStack.push(20);
+    myStack.push(30);
+
+    cout << "Top element: " << myStack.peek() << endl;
+    // Top element: 30
+
+    while (!myStack.isEmpty()) {
+        cout << "Popped: " << myStack.pop() << endl;
+    }
+    // Popped: 30
+    // Popped: 20
+    // Popped: 10
+
+    return 0;
+}
+`;
+
+export const stackLinkedListExample = `#include <iostream>
+using namespace std;
+
+// Node structure 
+struct Node {
+    int data;
+    Node* next;
+};
+
+class Stack{
+    private:
+        Node* top;
+        
+    public:
+        Stack(){
+            top = nullptr;
+        }
+        
+        bool isEmpty(){
+            return top == nullptr;
+        }
+        
+        void push(int value){
+            Node* node = new Node();
+            node->data = value;
+            node->next = top;
+            top = node;
+        }
+        
+        int pop(){
+            if(isEmpty()){
+                cout << "Stack is empty" << "\\n";
+                return -1; // Error indicator
+            }
+            
+            int poppedElement = top->data;
+            Node* temp = top;
+            top = top->next;
+            delete temp;
+            return poppedElement;
+        }
+        
+        int peek(){
+            if(isEmpty()){
+                cout << "Stack is empty" << "\\n";
+                return -1; // Error indicator
+            }
+            return top->data;
+        }
+};
+
+int main() {
+    Stack myStack;
+
+    myStack.push(10);
+    myStack.push(20);
+    myStack.push(30);
+
+    cout << "Top element: " << myStack.peek() << endl;
+    // Top element: 30
+
+    while (!myStack.isEmpty()) {
+        cout << "Popped: " << myStack.pop() << endl;
+    }
+    // Popped: 30
+    // Popped: 20
+    // Popped: 10
 
     return 0;
 }`;

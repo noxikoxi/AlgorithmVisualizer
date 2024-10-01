@@ -13,7 +13,6 @@ export const drawSort = (context: CanvasRenderingContext2D, step :number, number
             
             if(selectedBarIndex && index === selectedBarIndex[step])
             {
-                console.log('siema');
                 context.fillStyle = '#C9CC3F';
             }else{
                 context.fillStyle = '#fff';
