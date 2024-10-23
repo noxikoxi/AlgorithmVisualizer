@@ -32,7 +32,7 @@ const SortBarVisualization = ({steps, setNumbers, numbersNum, stepDescription, s
                 <h1 className="md-block">Animation</h1>
                 <h1>Step: {step}/{steps.length-1}</h1>
             </div>
-            <canvas ref={canvasRef} width={1000} height={500}>
+            <canvas ref={canvasRef} width={1000} height={500} style={{imageRendering: "pixelated"}}>
 
             </canvas>
             <span style={{fontSize: 20}}>{stepDescription ? stepDescription : "Each step represents swap of the elements."}</span>

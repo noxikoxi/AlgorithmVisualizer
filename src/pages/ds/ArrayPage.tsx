@@ -2,13 +2,16 @@ import ArrayVisualization from "../../components/visualizations/ds/ArrayVisualiz
 import DsComplexity from "../../components/DsComplexity";
 import CodeBlock from "../../components/CodeBlock";
 import {arrayExample} from "../../algorithms/data-structures/examples";
+import {generateRandomNumbers} from "../../utils/numbers";
 
 const ArrayPage = () => {
+    const elements: number[] = generateRandomNumbers(10, 10, 99);
+
     return (
             <>
                 <span className="text-block">An array (or a table) is the simplest possible data structure. It is used to store a specific group of elements. You can imagine it as a collection of elements (they are stored at contiguous memory location). Each element has a specific index, from which a reference to it can be obtained. Because an array is contiguous memory location its size should be known in initialization. We cannot exceed or shrink an array, the only possibility is to create new array and copy existing elements to it. Arrays can stored element of any type. </span>
                 <p>Array Visualization</p>
-                <ArrayVisualization numberOfElements={10}/>
+                <ArrayVisualization elements={elements}/>
                 <span className="text-block"> This border can be imagined as an array. It stores element, each one has a value (inside the block) and an index (below the block). Indexing almost always starts from number 0, however in some programing language (for example Fortran), default indexing starts from 1. Therefore if we call this array "arr" referencing arr[0] would give as the first element. Referencing arr without brackets is reference to its first element, so arr[0] = arr.</span>
                 <DsComplexity access={<span>O(1)</span>} search={<span>O(n)</span>} insertion={<span>O(n)</span>} deletion={<span>O(n)</span>}/>
                 <span className="text-block">Time Complexity for insertion is O(n), because when we want to insert an element at a specific index, the rest of elements need to be shifted to right resulting in the worst case scenario shifting every element. Without shifting elements it's O(1). The same goes for deleting elements.</span>

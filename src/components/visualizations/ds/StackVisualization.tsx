@@ -11,7 +11,7 @@ const StackVisualization = () => {
                 <span className="topIndicator">Top</span>
                 <div className="col" style={{gap:2}}>
                     {elements.map((elem, index) => (
-                        <div key={`1-${index}`} className={index == 0 ? "invisibleElem" : "elem"}>{elem}</div>
+                        <div key={`1-${index}`} className={index === 0 ? "invisibleElem" : "elem"}>{elem}</div>
                     ))}
                 </div>
             </div>
@@ -35,7 +35,7 @@ const StackVisualization = () => {
                 <span className="topIndicator">Top</span>
                 <div className="col" style={{gap:2}}>
                     {elements.map((elem, index) => (
-                        <div key={`3-${index}`} className={index == 0 ? "invisibleElem" : "elem"}>{elem}</div>
+                        <div key={`3-${index}`} className={index === 0 ? "invisibleElem" : "elem"}>{elem}</div>
                     ))}
                 </div>
             </div>

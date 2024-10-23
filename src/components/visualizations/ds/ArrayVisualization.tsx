@@ -1,20 +1,17 @@
-import {generateRandomNumbers} from "../../../utils/numbers";
-
 type Props = {
-    numberOfElements: number
+    elements: number[];
+    shorten?: boolean
 }
-const ArrayVisualization = ({numberOfElements} : Props) => {
 
-    const elements: number[] = generateRandomNumbers(numberOfElements, 10, 99);
-
+const ArrayVisualization = ({elements, shorten=false} : Props) => {
     return (
-        <div className="array" style={{display: "flex", gap: 5}}>
+        <div className={shorten ? "array shorten" : "array"}>
             {elements.map((elem, index) => (
                 <div key={index} style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
-                    <div  className="elem" >
+                    <div className={shorten ? "elem shorten" : "elem"} >
                         <span>{elem}</span>
                     </div>
-                    <span style={{fontSize: "large"}}>{index}</span>
+                    <span className={shorten ? "elemIdx shorten" : "elemIdx"}>{index}</span>
                 </div>
             ))}
         </div>
