@@ -11,10 +11,10 @@ const StackPage = () => {
             <span className="text-block">
                 Typical operation that you can do on a stack are:
                 <ul style={{listStyleType: "circle", paddingLeft: 40, margin: 0}}>
-                    <li>Push - Adds new element to the top of stack.</li>
-                    <li>Pop - Removes and return element from the top of stack.</li>
-                    <li>Peek - Return the value from the top of stack without removing it.</li>
-                    <li>isEmpty - Checks if the stack is empty.</li>
+                    <li><span className="bolded">Push</span> - Adds new element to the top of stack.</li>
+                    <li><span className="bolded">Pop</span> - Removes and return element from the top of stack.</li>
+                    <li><span className="bolded">Peek</span> - Return the value from the top of stack without removing it.</li>
+                    <li><span className="bolded">isEmpty</span> - Checks if the stack is empty.</li>
                 </ul>
             </span>
             <p>Stack Visualization</p>

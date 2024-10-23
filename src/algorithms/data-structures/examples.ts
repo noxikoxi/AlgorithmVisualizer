@@ -599,3 +599,147 @@ int main() {
     return 0;
 }
 `;
+
+export const heapExample = `#include <iostream>
+#include <cassert>
+
+class MaxHeap{
+    private:
+        int* arr;
+        size_t maxSize;
+        size_t size;
+
+        int right(int i) { return i*2 + 1;}
+        int left(int i) { return i*2 + 2;}
+        int parent(int i) { return (i-1)/2;}
+
+        void resize(int val){
+            maxSize *= val;
+            int* temp = new int[maxSize];
+
+            std::copy(arr, arr + size, temp);
+
+            delete[] arr;
+            arr = temp;
+        }
+
+        void heapify(int i){
+            int maxi = i;
+            int l = left(i);
+            int r = right(i);
+
+            if(l < size && arr[l] > arr[maxi]) maxi = l;
+            if(r < size && arr[r] > arr[maxi]) maxi = r;
+
+            if(maxi != i)
+            {
+                std::swap(arr[maxi], arr[i]);
+                heapify(maxi);
+            }
+        }
+
+        public:
+            MaxHeap() : maxSize(100), size(0) {arr = new int[maxSize];}
+            ~MaxHeap() {delete[] arr;}
+
+            MaxHeap(int* array, size_t arraySize) : maxSize(100), size(arraySize) {
+                while(maxSize < arraySize){
+                    maxSize *= 2;
+                }
+
+                arr = new int[maxSize];
+                std::copy(array, array + arraySize, arr);
+
+                for(int i=(size/2)-1; i >= 0; --i){
+                    heapify(i);
+                }
+            }
+
+            size_t getSize() const{
+                return size;
+            }
+
+            bool isEmpty() const {
+                return size == 0;
+            }
+
+            int getMax() const {
+                assert(size != 0);
+                return arr[0];
+            }
+
+            int extractMax(){
+                assert(size != 0);
+
+                int res = arr[0];
+                std::swap(arr[0], arr[--size]);
+                heapify(0);
+
+                if((size <= (maxSize / 4)) && maxSize > 100) resize(0.5);
+
+                return res;
+            }
+
+            void insert(int val){
+                if(size >= maxSize)
+                {
+                    resize(2);
+                }
+                int idx = size;
+                ++size;
+                arr[idx] = val;
+
+                while(idx > 0 && arr[parent(idx)] < val)
+                {
+                    std::swap(arr[idx], arr[parent(idx)]);
+                    idx = parent(idx);
+                }
+            }
+
+            void print() const {
+                for(auto i=0; i < size; ++i){
+                    std::cout << arr[i] << " ";
+                }
+                std::cout << "\\n";
+            }
+
+
+};
+
+int main(){
+    MaxHeap heap;
+
+    heap.insert(10);
+    heap.insert(20);
+    heap.insert(5);
+    heap.insert(30);
+    heap.insert(25);
+
+    std::cout << "Heap: ";
+    heap.print();
+
+    std::cout << "Maximum element: " << heap.getMax() << std::endl;
+
+    std::cout << "Extracted maximum element: " << heap.extractMax() << std::endl;
+    std::cout << "Heap after extraction: ";
+    heap.print();
+    std::cout << "Extracted maximum element: " << heap.extractMax() << std::endl;
+    std::cout << "Heap after extraction: ";
+    heap.print();
+    std::cout << "Extracted maximum element: " << heap.extractMax() << std::endl;
+    std::cout << "Heap after extraction: ";
+    heap.print();
+
+    std::cout << "Array before passing to MaxHeap: ";
+    int arr[] = {4, 6, 2, 1, -2, -6, 6, 9, 10};
+    for(auto i=0; i < 9; ++i){
+        std::cout << arr[i] << " ";
+    }
+    std::cout << "\\n";
+
+    std::cout << "Heap created from array: ";
+    MaxHeap h1(arr, 9);
+    h1.print();
+
+    return 0;
+}`;

@@ -26,7 +26,7 @@ const TableTimeComplexity = ({title} : Props) => {
                 {linkedListComplexity.map((complexity : Complexity, index) => (
                     <tr key={index}>
                     {tableHead.map((head, index1) => (
-                        <td key={head + "-" + index + "-" + index1} className={`${index1 == 0 ? "bg-primary bolded" : "bg"}`} style={{ border: "1px solid var(--border)", padding: '8px', textAlign: "center"}}>{complexity[head]}</td>
+                        <td key={head + "-" + index + "-" + index1} className={`${index1 === 0 ? "bg-primary bolded" : "bg"}`} style={{ border: "1px solid var(--border)", padding: '8px', textAlign: "center"}}>{complexity[head]}</td>
                     ))}
                     </tr>
                 ))}

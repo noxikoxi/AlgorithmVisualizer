@@ -10,11 +10,11 @@ const QueuePage = () => {
             <span className="text-block">Queue implementation, just like a stack, can be done using array or linked list (with a reference to it's end).</span>
             <span className="text-block">
                 Typical operation that you can do on a queue are:
-                <ul style={{listStyleType: "circle", paddingLeft: 40, margin: 0}}>
-                    <li>Enqueue - Adds new element to the back of the queue.</li>
-                    <li>Dequeue - Removes and return the first element from the queue.</li>
-                    <li>Peek - Return the value at the front of the queue without removing it.</li>
-                    <li>isEmpty - Checks if the queue is empty.</li>
+                <ul>
+                    <li><span className="bolded">Enqueue</span> - Adds new element to the back of the queue.</li>
+                    <li><span className="bolded">Dequeue</span> - Removes and return the first element from the queue.</li>
+                    <li><span className="bolded">Peek</span> - Return the value at the front of the queue without removing it.</li>
+                    <li><span className="bolded">isEmpty</span> - Checks if the queue is empty.</li>
                 </ul>
             </span>
 

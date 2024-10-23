@@ -15,9 +15,11 @@ const DsLayout = ({children} : Props) => {
 
     return (
         <div id="main">
-            <Header/>
-            <TopNav text={DS} links={links} className="bg-primary"/>
-            <div className="centered h-full" style={{overflow: "auto"}}>
+            <div className="headerWrapper">
+                <Header/>
+                <TopNav text={DS} links={links} className="bg-primary"/>
+            </div>
+            <div className="centered h-full">
                 <div className="md-w-80 centered bg-secondary h-full" style={{overflow: "auto", width: "100%", gap:15}}>
                     <span className="title" style={{display: "flex", gap:10}}><span className="md-block">Data Structures - </span><span className="capitalized">{location.pathname.split("/")[2]}</span></span>
                     {children}

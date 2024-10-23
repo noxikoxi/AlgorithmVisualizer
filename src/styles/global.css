@@ -2,6 +2,8 @@
   --primary: hsl(60, 9.1%, 10%);
   --secondary: hsl(12, 6.5%, 20%);
   --background: hsl(20, 14.3%, 4.1%);
+  --input: #333;
+
   --text: hsl(60, 9.1%, 97.8%);
   --border: hsl(60, 9.1%, 60%);
   --danger: hsl(353, 61%, 43%);
@@ -38,6 +40,50 @@ body {
   color: var(--text)
 }
 
+.buttons {
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  gap:20px;
+}
+
+.buttons button {
+  background-color: var(--secondary);
+  box-shadow: 5px 5px 5px black;
+  color: var(--text);
+  font-size: large;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  width: 130px;
+  border: none;
+}
+
+input{
+  border-radius: 5px;
+  font-size: large;
+  background-color: var(--input);
+  border: 1px solid var(--border);
+  color: white;
+}
+
+input:focus{
+  outline: 2px solid white;
+}
+
+.buttons button.danger {
+  background-color: var(--danger);
+}
+
+.buttons button.next {
+  background-color: var(--next);
+}
+
+.buttons button:hover{
+  outline: 2px solid white;
+}
+
 ul {
   list-style-type: none;
   padding: 0;
@@ -50,13 +96,11 @@ ol{
   margin-top: 5px;
   gap:5px;
   font-size: large;
-  align-items: center;
 }
 
 ol li{
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap:5px;
 }
 
@@ -84,6 +128,10 @@ a {
 
 .sm-block {
   display: block;
+}
+
+.sm-col{
+  flex-direction: column;
 }
 
 .md-block, .md-flex{
@@ -143,9 +191,34 @@ a {
   justify-content: space-between;
 }
 
+canvas {
+  border: 1px solid var(--border);
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.canvasContainer {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap:5px;
+}
+
+.headerWrapper {
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+  position: sticky;
+  top: 0;
+}
+
 @media (min-width: 640px){
   .sm-block{
     display: none;
+  }
+
+  .sm-col{
+    flex-direction: row;
   }
 
   .md-flex {
@@ -159,11 +232,7 @@ a {
 }
 
 @media (min-width: 1024px){
-  #main {
-    height: 100vh;
-    max-height: 100vh;
-    min-height: 0;
-  }
+
   .md-w-80{
     width: 80%;
   }

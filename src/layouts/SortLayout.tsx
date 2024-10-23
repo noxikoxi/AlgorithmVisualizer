@@ -11,8 +11,10 @@ const SortLayout = ({children} : Props) => {
     const links = sorts.map((item) =>  "/sorting/" + item.split(" ")[0].toLowerCase())
     return (
         <div id ="main" style={{position: 'relative'}}>
-            <Header/>
-            <TopNav text={sorts} links={links}/>
+            <div className="headerWrapper">
+                <Header/>
+                <TopNav text={sorts} links={links}/>
+            </div>
             {children}
         </div>
     )

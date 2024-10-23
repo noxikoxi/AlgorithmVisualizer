@@ -1,8 +1,5 @@
 header{
-    padding: 20px;
-    position: sticky;
-    top: 0;
-    z-index: 10;
+    padding: 10px;
     border-bottom: 1px solid var(--border);
     background-color: var(--primary);
     display: flex;
@@ -48,6 +45,9 @@ a#homeText {
 }
 
 @media (min-width: 1024px){
+    header{
+        padding: 20px;
+    }
     a#homeText {
         font-size: xx-large;
     }

@@ -6,20 +6,11 @@
     font-size: large;
 }
 
-.elem, .array{
-    border-radius: 10px;
-}
+.text-block ul {
+    list-style-type: circle;
+    margin: 0;
+    padding-left: 40px;
 
-.elem, .invisibleElem{
-    position: relative;
-    padding: 5px;
-    background-color: var(--primary);
-    font-size: large;
-}
-
-.invisibleElem{
-    background-color: transparent;
-    color: transparent;
 }
 
 .topIndicator, .frontIndicator{
@@ -35,6 +26,12 @@
     left: 0;
 }
 
+.stackVisualizationContainer{
+    gap: 20px;
+    align-items: center;
+    margin-top: 20px;
+}
+
 .stackContainer{
     border-top: none;
     padding: 4px;
@@ -48,19 +45,81 @@
     border-right: none;
 }
 
-
 .array{
     border: 1px solid var(--border);
     padding: 5px;
+    display: flex;
+    gap: 5px;
 }
+
+.elem, .array{
+    border-radius: 5px;
+}
+
+.elem, .invisibleElem{
+    position: relative;
+    padding: 5px;
+    background-color: var(--primary);
+    font-size: large;
+}
+
+.invisibleElem{
+    background-color: transparent;
+    color: transparent;
+}
+
+.elemIdx{
+    font-size: large;
+}
+
+.elemIdx.shorten{
+    font-size: medium;
+}
+
+.array.shorten{
+    gap:2px;
+}
+
+.elem.shorten{
+    font-size: medium;
+    padding: 2px;
+}
+
+@media (min-width: 640px){
+    .elem, .invisibleElem, .elem.shorten{
+        font-size: x-large;
+    }
+
+    .text-block{
+        width: 80%;
+    }
+}
+
 
 @media (min-width: 1024px){
     .text-block{
-        width: 60%;
+        width: 65%;
     }
 
     .elem, .invisibleElem{
         font-size: xx-large;
     }
 
+    .stackVisualizationContainer{
+        gap: 50px;
+    }
+
+    .array.shorten{
+        gap:5px;
+    }
+
+    .elemIdx.shorten{
+        font-size: large;
+    }
+
+    .elem.shorten{
+        font-size: xx-large;
+        padding: 5px;
+
+    }
 }

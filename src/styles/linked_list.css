@@ -82,10 +82,12 @@
 
 .listNull{
     padding-left: 10px;
+    font-size: 0.6em;
 }
 
 .listRef{
     padding-right: 10px;
+    font-size: 0.6em;
 }
 
 
@@ -97,10 +99,12 @@
 
     .listNull{
         padding-left: 15px;
+        font-size: 0.8em;
     }
 
     .listRef{
         padding-right: 15px;
+        font-size: 0.8em;
     }
 
     .linkedBlock{
@@ -138,10 +142,12 @@
 
     .listNull{
         padding-left: 22px;
+        font-size: 1em;
     }
 
     .listRef{
         padding-right: 20px;
+        font-size: 1em;
     }
 
     .linkedBlock{
