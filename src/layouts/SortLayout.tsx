@@ -13,7 +13,7 @@ const SortLayout = ({children} : Props) => {
         <div id ="main" style={{position: 'relative'}}>
             <div className="headerWrapper">
                 <Header/>
-                <TopNav text={sorts} links={links}/>
+                <TopNav text={sorts} links={links} className="bg"/>
             </div>
             {children}
         </div>
