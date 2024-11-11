@@ -33,7 +33,7 @@ function MainPage() {
         <p className="title" style={{margin: 10}}>Algorithm Visualizer</p>
         <span style={{fontWeight: "bold"}}>Learn about Data Structures and Algorithms</span>
         <span className="tiny">Every algorithm/data structure contains visualizations.</span>
-        <span className="tiny">Currently working on sorting algorithms.</span>
+        <span className="tiny">Currently working on data structures.</span>
         <MainPageLinks imgAlt="sorted bars" imgSrc="/sort.png" links={sortlinks} text={sorts}/>
         <MainPageLinks imgAlt="data structures" imgSrc="/ds.png" links={dsLinks} text={DS}/>
       </div>

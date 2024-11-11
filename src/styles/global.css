@@ -233,6 +233,10 @@ canvas {
 
 @media (min-width: 1024px){
 
+  #main{
+    height: 100dvh;
+  }
+
   .md-w-80{
     width: 80%;
   }
