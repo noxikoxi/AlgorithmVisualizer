@@ -23,7 +23,7 @@ export const drawSort = (context: CanvasRenderingContext2D, step :number, number
     }
 }
 
-function drawNode(context: CanvasRenderingContext2D, x: number, y: number, size: number, value: number){
+function drawNode(context: CanvasRenderingContext2D, x: number, y: number, size: number, value: string){
     context.beginPath()
     context.arc(x, y, size, 0, 2*Math.PI);
 
@@ -33,7 +33,7 @@ function drawNode(context: CanvasRenderingContext2D, x: number, y: number, size:
     context.fillStyle = '#000';
     context.stroke()
 
-    context.fillText(value.toString(), x, y);
+    context.fillText(value, x, y);
 }
 
 function drawLine(context: CanvasRenderingContext2D, x1: number, y1: number, x2: number, y2: number){
@@ -83,8 +83,23 @@ export const drawHeapFromArray = (context: CanvasRenderingContext2D, arr: number
             drawLine(context, x, y, rightChildPos.x, rightChildPos.y);
         }
 
-        drawNode(context, x, y, circleRadius, arr[i]);
+        drawNode(context, x, y, circleRadius, arr[i].toString());
+    }
+}
+export function drawGraph(context: CanvasRenderingContext2D, edges : {from: number, to :number}[], nodes : {x: number, y: number, label: string}[]) {
+    const canvasWidth = context.canvas.width;
+    const canvasHeight = context.canvas.height;
+    context.clearRect(0, 0, canvasWidth, canvasHeight);
+
+    context.lineWidth=3;
+    for (let edge of edges) {
+        drawLine(context, nodes[edge.from].x, nodes[edge.from].y, nodes[edge.to].x, nodes[edge.to].y)
     }
 
-
+    context.font = "25px Roboto ";
+    context.textAlign = "center";
+    context.textBaseline = "middle";
+    for (let node of nodes){
+        drawNode(context,node.x, node.y, 30, node.label)
+    }
 }

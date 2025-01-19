@@ -85,6 +85,11 @@
     padding: 2px;
 }
 
+#adjacencyTable tr,td,th {
+    padding: 10px;
+    font-size: medium;
+}
+
 @media (min-width: 640px){
     .elem, .invisibleElem, .elem.shorten{
         font-size: x-large;
@@ -100,6 +105,12 @@
     .text-block{
         width: 65%;
     }
+
+    #adjacencyTable tr,td,th {
+        padding: 20px;
+        font-size: large;
+    }
+
 
     .elem, .invisibleElem{
         font-size: xx-large;

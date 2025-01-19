@@ -3,6 +3,7 @@ import {generateRandomNumbers} from "../../utils/numbers";
 import TableTimeComplexity from "../../components/visualizations/ds/TableTimeComplexity";
 import CodeBlock from "../../components/CodeBlock";
 import {ListExample} from "../../algorithms/data-structures/examples";
+import {linkedListComplexity} from "../../algorithms/data-structures/config";
 
 const ListPage = () => {
 
@@ -55,7 +56,7 @@ const ListPage = () => {
             <span className="text-block">Singly Linked List is build from nodes with only pointer to the next Node. The list ends when a Node.next == NULL. When it's Circular Linked List, the last element has pointer to the first element. Double Linked List is build from Nodes that have in additional a pointer to previous Node. It allows traversing the list in both directions. Circular Double Linked List has the same pointer like in Single Circular List and an additional pointer to last element from the first one.</span>
             <span className="text-block">Circular Lists don't have defined "end" because there is no NULL pointer.</span>
             <span className="text-block">Typical Operations possible on Linked Lists are: insertion, deletion, searching, traversal, updating, accessing elements </span>
-            <TableTimeComplexity title="Time Complexity of Operations on Linked List"/>
+            <TableTimeComplexity title="Time Complexity of Operations on Linked List" tableObject={linkedListComplexity}/>
 
             <h2>Explanation</h2>
 
