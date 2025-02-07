@@ -4,16 +4,16 @@ type Props = {
 }
 const TimeComplexityList = ({complexity, operations} : Props) => {
     return (
-        <>
-            <span className="bolded" style={{fontSize: "large"}}>Time Complexity</span>
-            <ul style={{listStyleType: "circle", paddingLeft: 40, margin: 0, fontSize: "large", width: 200}}>
-                {operations.map((operation, index) => (
-                    <li key={operation}><span className="justify-between"><span>{operation}</span><span>{complexity[index]}</span></span></li>
-                ))}
-            </ul>
-        </>
+        <div className="bg-primary" style={{margin: 10, fontSize: "x-large", padding: 10 ,borderRadius: 10, display:"flex", flexDirection: "column", alignItems: "center", gap:"10px"}}>
+            <span>Time Complexity</span>
+            {operations.map((elem, index) => (
+                <div key={elem} style={{display: "flex", flexDirection: "row", width: "100%", justifyContent: "space-between"}}>
+                    <span>{elem}:</span>
+                    {complexity[index]}
+                </div>
+            ))}
+        </div>
     )
 }
-
 
 export  default TimeComplexityList;

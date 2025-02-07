@@ -170,6 +170,10 @@ a {
   font-weight: 500;
 }
 
+.italic{
+  font-style: italic;
+}
+
 .col{
   display: flex;
   flex-direction: column;
