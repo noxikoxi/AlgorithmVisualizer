@@ -124,3 +124,20 @@ export const graphVisualizationEdges = [
 ];
 
 export const graphVisualizationEdgesList = [[1, 2], [0, 2, 6], [0, 1, 3, 4], [2], [2, 3, 5], [4, 6], [1, 5,], [], [9], [8]];
+
+export const treeVisualizationNodes = [
+    {x: 300, y:50, label: "A"},
+    {x: 200, y:200, label: "B"},
+    {x: 300, y:200, label: "C"},
+    {x: 400, y:200, label: "D"},
+    {x: 100, y:350, label: "E"},
+    {x: 200, y:350, label: "F"},
+]
+
+export const treeVisualizationEdges = [
+    {from: 0, to: 1},
+    {from: 0, to: 2},
+    {from: 0, to: 3},
+    {from: 1, to: 4},
+    {from: 1, to: 5},
+]

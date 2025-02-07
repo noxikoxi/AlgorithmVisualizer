@@ -48,7 +48,7 @@ const HeapPage = () => {
 
             <span className="text-block">Heaps are used in Priority Queues, Heap Sort and Graph Algorithms like Dijkstra's or Prim's.</span>
 
-            <TimeComplexityList complexity={['O( log(n) )', 'O( log(n) )', 'O(1)', 'O( n )']} operations={['Insert', 'Extract', 'Peek', 'BuildHeap']}/>
+            <TimeComplexityList complexity={['O(log n)', 'O(log n)', 'O(1)', 'O(n)']} operations={['Insert', 'Extract', 'Peek', 'BuildHeap']}/>
 
             <span className="text-block">Building a heap from existing array can be achieved in O(n) with bottom-up heapify-down process in which you start at index (n/2)-1 and then call heapify for each non-leaf node working from right to left (in array). Total time complexity id derived from fact that nodes near the bottom take less time to heapify when nodes closer to the top need more. However there is less nodes close to the top than bottom of a heap.</span>
 
