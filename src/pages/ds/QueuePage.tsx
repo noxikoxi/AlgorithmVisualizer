@@ -29,10 +29,10 @@ const QueuePage = () => {
             <span className="text-block">Worth noticing is that O(1) time complexity for dequeue is when queue is implemented using linked list. In array implementation it's O(n), because shift of each element is needed. However is queue implementation on array use circular incrementation, then shift is not needed and queueing is still O(1).</span>
 
             <p>Queue implementation using array and circular incrementation.</p>
-            <CodeBlock code={queueArrayExample} language="cpp"/>
+            <CodeBlock codePair={queueArrayExample}/>
 
             <p>Queue implementation using singly linked list.</p>
-            <CodeBlock code={queueLinkedListExample} language="cpp"/>
+            <CodeBlock codePair={queueLinkedListExample}/>
 
         </>
     )

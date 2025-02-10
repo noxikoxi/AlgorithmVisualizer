@@ -1,4 +1,4 @@
-import { selectionSortDescription, selectionSortText, selectionSortTodo } from "../../algorithms/sorting/descriptions";
+import { selectionSortDescription, selectionSortCode, selectionSortTodo } from "../../algorithms/sorting/descriptions";
 import { selectionSort } from "../../algorithms/sorting/sort";
 import SelectionSortVisualization from "../../components/visualizations/SelectionSortVisualization";
 import TestCode from "../../components/TestCode";
@@ -13,7 +13,7 @@ const SelectionSortPage = () => {
                 todo={selectionSortTodo} 
                 timeComplexity={<span>Time Complexity: O( n<span style={{verticalAlign: "super", fontSize: "smaller"}}>2 </span>)</span>} 
                 spaceComplexity={<span>Space Complexity: O(1)</span>} 
-                funcs={[selectionSortText]} 
+                funcs={[selectionSortCode]} 
             />
             <div id="visualizationContainer">
                 <TestCode sort={selectionSort}/>

@@ -1,4 +1,4 @@
-import { partitionText, quickSortAdditional, quickSortDescription, quickSortText, quickSortTodo } from "../../algorithms/sorting/descriptions";
+import { partitionCode, quickSortAdditional, quickSortDescription, quickSortCode, quickSortTodo } from "../../algorithms/sorting/descriptions";
 import { quickSort } from "../../algorithms/sorting/sort";
 import SortDescription from "../../components/SortDescription";
 import TestCode from "../../components/TestCode";
@@ -14,7 +14,7 @@ const QuickSortPage = () => {
                 todo={quickSortTodo} 
                 timeComplexity={<span>Time Complexity: O( n * log<span style={{verticalAlign: "sub", fontSize: "smaller"}}>2</span>(n) )</span>} 
                 spaceComplexity={<span>Space Complexity: O( log<span style={{verticalAlign: "sub", fontSize: "smaller"}}>2</span>(n) )</span>} 
-                funcs={[quickSortText, partitionText]}
+                funcs={[quickSortCode, partitionCode]}
                 additional={quickSortAdditional}
             >   
             </SortDescription>

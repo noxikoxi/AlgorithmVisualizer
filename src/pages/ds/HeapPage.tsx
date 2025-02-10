@@ -62,7 +62,7 @@ const HeapPage = () => {
             <BuildingHeapAnimation />
 
             <p>heap in C++</p>
-            <CodeBlock code={heapExample} language="cpp"/>
+            <CodeBlock codePair={heapExample}/>
         </>
     )
 }

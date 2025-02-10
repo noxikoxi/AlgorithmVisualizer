@@ -83,7 +83,7 @@ const ListPage = () => {
             <span className="text-block"><span className="bolded">Delete at Position:</span> Deleting at a specific position requires traversing the list to reach the desired position, which takes O(n) time for all types of lists.</span>
             <span className="text-block"><span className="bolded">Searching:</span> Searching for an element requires traversing the list, so the time complexity is O(n) for all types of linked lists.</span>
             <p>Circular Doubly Linked List in C++</p>
-            <CodeBlock code={ListExample} language="cpp"/>
+            <CodeBlock codePair={ListExample}/>
 
             <span className="text-block"> Different Linked List variants would slightly differ. Without circular property, traversal would be done until Node.next == nullptr. Without pointer to previous Node to insert at the end, firstly traversal to end is needed in O(n).</span>
         </>
