@@ -1,7 +1,7 @@
 import SortDescription from "../../components/SortDescription";
 import {
-    buildHeapText, heapifyText, heapSortAdditional,
-    heapSortDescription, heapSortText, heapSortTodo,
+    buildHeapCode, heapifyCode, heapSortAdditional,
+    heapSortDescription, heapSortCode, heapSortTodo,
 } from "../../algorithms/sorting/descriptions";
 import TestCode from "../../components/TestCode";
 import {heapSort} from "../../algorithms/sorting/sort";
@@ -16,7 +16,7 @@ const HeapSortPage = () => {
                 todo={heapSortTodo}
                 timeComplexity={<span>Time Complexity: O( n * log<span style={{verticalAlign: "sub", fontSize: "smaller"}}>2</span>(n) )</span>}
                 spaceComplexity={<span>Time Complexity: O( log<span style={{verticalAlign: "sub", fontSize: "smaller"}}>2</span>(n) )</span>}
-                funcs={[heapSortText, buildHeapText, heapifyText]}
+                funcs={[heapSortCode, buildHeapCode, heapifyCode]}
                 additional={heapSortAdditional}
             >
             </SortDescription>

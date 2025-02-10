@@ -1,4 +1,4 @@
-import { insertionSortDescription, insertionSortText, insertionSortTodo } from "../../algorithms/sorting/descriptions";
+import { insertionSortDescription, insertionSortCode, insertionSortTodo } from "../../algorithms/sorting/descriptions";
 import { insertionSort } from "../../algorithms/sorting/sort";
 import SortDescription from "../../components/SortDescription";
 import TestCode from "../../components/TestCode";
@@ -13,7 +13,7 @@ const InsertionSortPage = () => {
                 todo={insertionSortTodo} 
                 timeComplexity={<span>Time Complexity: O( n<span style={{verticalAlign: "super", fontSize: "smaller"}}>2 </span>)</span>} 
                 spaceComplexity={<span>Space Complexity: O(1)</span>} 
-                funcs={[insertionSortText]} 
+                funcs={[insertionSortCode]} 
             />
             <div id="visualizationContainer">
                 <TestCode sort={insertionSort}/>

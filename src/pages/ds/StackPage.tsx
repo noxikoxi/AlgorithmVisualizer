@@ -24,9 +24,9 @@ const StackPage = () => {
 
             <span className="text-block">This is because these operations involve accessing or modifying the top element of the stack, which is usually implemented using an array or a linked list. In both cases, accessing the top element is a constant-time operation.</span>
             <p>Stack implementation using array.</p>
-            <CodeBlock code={stackArrayExample} language="cpp"/>
+            <CodeBlock codePair={stackArrayExample}/>
             <p>Stack implementation using singly linked list.</p>
-            <CodeBlock code={stackLinkedListExample} language="cpp"/>
+            <CodeBlock codePair={stackLinkedListExample}/>
         </>
     )
 }

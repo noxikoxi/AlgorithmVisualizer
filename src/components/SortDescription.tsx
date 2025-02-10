@@ -8,7 +8,7 @@ type Props = {
     timeComplexity: ReactNode,
     spaceComplexity: ReactNode,
     additional? : string,
-    funcs: string[],
+    funcs: {[key: string]: string}[],
     children?: ReactNode
 }
 
@@ -35,13 +35,12 @@ const SortDescription = ({title, description, todo, funcs, timeComplexity, space
                     )) }
                 </ol>
             </div>
-            <div className ="code">
-                {funcs.map((text, index) => (
-                    <CodeBlock key={index} code = {text} language="javascript"/>
+            <div className="code">
+                {funcs.map((codePair, index) => (
+                    <CodeBlock key={index} codePair={codePair} />
                 ))}
             </div>
             {children}
-            
         </div>
     </div>
     )
