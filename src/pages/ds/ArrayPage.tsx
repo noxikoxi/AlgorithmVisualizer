@@ -15,7 +15,7 @@ const ArrayPage = () => {
                 <span className="text-block"> This border can be imagined as an array. It stores element, each one has a value (inside the block) and an index (below the block). Indexing almost always starts from number 0, however in some programing language (for example Fortran), default indexing starts from 1. Therefore if we call this array "arr" referencing arr[0] would give as the first element. Referencing arr without brackets is reference to its first element, so arr[0] = arr.</span>
                 <TimeComplexityList complexity={['O(1)', 'O(n)', 'O(n)', 'O(n)']} operations = {["Access", "Search", "Insertion", "Deletion"]}/>
                 <span className="text-block">Time Complexity for insertion is O(n), because when we want to insert an element at a specific index, the rest of elements need to be shifted to right resulting in the worst case scenario shifting every element. Without shifting elements it's O(1). The same goes for deleting elements.</span>
-                <p>Code Example</p>
+                <p>Code Examples</p>
                 <CodeBlock codePair={arrayExample}/>
                 <span className="text-block">Remember that indexing elements lower that 0 and greater that declared array size is possible. You will changed what is saved in next/previous memory block. Be aware that your index must be greater or equal 0 and never bigger than array's maximum size. </span>
             </>

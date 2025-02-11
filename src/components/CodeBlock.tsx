@@ -35,8 +35,8 @@ const CodeBlock: React.FC<CodeBlockProps> = ({codePair}) => {
             key={lang}
             style={{
               cursor: 'pointer',
-              opacity: lang === language ? 1 : 0.6, // Full opacity for selected, 0.6 for others
-              transition: 'opacity 0.3s',
+              opacity: lang === language ? 1 : 0.5,
+              transition: 'opacity 0.7s',
             }}
             onClick={() => setLanguage(lang)}
           >

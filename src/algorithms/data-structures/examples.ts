@@ -293,160 +293,508 @@ cpp:
         // List after deleting at position 2: 10 30 
 
         return 0;
-    }`
+    }`,
+zig: 
+`const std = @import("std");
+const print = std.debug.print;
+const Allocator = std.mem.Allocator;
+
+//This is generic Circular Doubly Linked List
+pub fn Node(comptime T: type) type {
+    return struct {
+        const Self = @This();
+        data: T,
+        next: ?*Node(T),
+        prev: ?*Node(T),
+
+        pub fn init(data: T) Self {
+            return .{ .data = data, .next = null, .prev = null };
+        }
+    };
+}
+
+pub fn LinkedList(comptime T: type) type {
+    return struct {
+        const Self = @This();
+        head: ?*Node(T),
+        allocator: Allocator,
+
+        pub fn init(allocator: Allocator) Self {
+            return .{ .allocator = allocator, .head = null };
+        }
+
+        pub fn deinit(self: *Self) void {
+            while (self.head != null) {
+                try self.deleteFirst();
+            }
+        }
+
+        pub fn insertFirst(self: *Self, data: T) !void {
+            const newNode = try self.allocator.create(Node(T));
+            newNode.* = Node(T).init(data);
+            if (self.head == null) {
+                self.head = newNode;
+                newNode.next = newNode;
+                newNode.prev = newNode;
+            } else {
+                const tail = self.head.?.prev.?;
+                newNode.next = self.head;
+                newNode.prev = tail;
+                self.head.?.prev = newNode;
+                tail.next = newNode;
+                self.head = newNode;
+            }
+        }
+
+        pub fn insertPosition(self: *Self, data: T, pos: usize) !void {
+            const newNode = try self.allocator.create(Node(T));
+            newNode.* = Node(T).init(data);
+
+            if (pos == 0)
+                try self.insertFirst(data);
+
+            var node = self.head;
+            var index: usize = 0;
+            while (index < pos and node.?.next != self.head) {
+                node = node.?.next;
+                index += 1;
+            }
+
+            if (index == pos) {
+                newNode.prev = node.?.prev;
+                newNode.next = node;
+                node.?.prev.?.next = newNode;
+                node.?.prev = newNode;
+            }
+        }
+
+        pub fn insertEnd(self: *Self, data: T) !void {
+            const newNode = try self.allocator.create(Node(T));
+            newNode.* = Node(T).init(data);
+            if (self.head == null) {
+                self.head = newNode;
+                newNode.next = newNode;
+                newNode.prev = newNode;
+            } else {
+                const tail = self.head.?.prev.?;
+                newNode.next = self.head;
+                newNode.prev = tail;
+                tail.next = newNode;
+                self.head.?.prev = newNode;
+                self.head.?.prev = newNode;
+            }
+        }
+
+        pub fn deleteFirst(self: *Self) !void {
+            if (self.head == null)
+                return;
+
+            if (self.head.?.next == self.head) {
+                self.allocator.destroy(self.head.?);
+                self.head = null;
+                return;
+            }
+
+            const nextHead = self.head.?.next;
+            self.head.?.prev.?.next = nextHead;
+            nextHead.?.prev = self.head.?.prev;
+            self.allocator.destroy(self.head.?);
+            self.head = nextHead;
+        }
+
+        pub fn deletePosition(self: *Self, pos: usize) !void {
+            if (self.head == null)
+                return;
+            if (self.head.?.next == self.head) {
+                self.allocator.destroy(self.head.?);
+                self.head = null;
+                return;
+            }
+
+            var deleted = self.head;
+            var index: usize = 0;
+            while (index < pos and deleted.?.next != self.head) {
+                deleted = deleted.?.next;
+                index += 1;
+            }
+
+            if (index == pos) {
+                deleted.?.prev.?.next = deleted.?.next;
+                deleted.?.next.?.prev = deleted.?.prev;
+                self.allocator.destroy(deleted.?);
+            }
+        }
+
+        pub fn deleteEnd(self: *Self) !void {
+            if (self.head == null)
+                return;
+            if (self.head.?.next == self.head) {
+                self.allocator.destroy(self.head.?);
+                self.head = null;
+                return;
+            }
+            const oldTail = self.head.?.prev;
+            self.head.?.prev = oldTail.?.prev;
+            oldTail.?.prev.?.next = self.head;
+            self.allocator.destroy(oldTail.?);
+        }
+
+        pub fn display(self: *Self) void {
+            if (self.head == null) {
+                print("empty\\n", .{});
+                return;
+            }
+
+            var next = self.head;
+            while (next.?.next != self.head) {
+                print("{} ", .{next.?.data});
+                next = next.?.next;
+            }
+            print("{}\\n", .{next.?.data});
+        }
+    };
+}
+
+pub fn main() !void {
+    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+    const allocator = gpa.allocator();
+
+    var list = LinkedList(i32).init(allocator);
+    try list.insertFirst(10);
+    try list.insertFirst(20);
+    try list.insertEnd(50);
+    try list.insertPosition(15, 1);
+    //Will display 20 15 10 50
+    list.display();
+    try list.deleteFirst();
+    // Will display 15 10 50
+    list.display();
+    try list.deleteEnd();
+    //Will display 15 10
+    list.display();
+    try list.insertEnd(200);
+    try list.deletePosition(1);
+    // Will display 15 200
+    list.display();
+}`
 };
 
 export const stackArrayExample = {
 cpp:    
-    `#include <iostream>
-    using namespace std;
+`#include <iostream>
+using namespace std;
 
-    class Stack {
-    private:
-        int capacity;
-        int top;
-        int* array;
+class Stack {
+private:
+    int capacity;
+    int top;
+    int* array;
 
-    public:
-        Stack(int size) {
-            capacity = size;
-            top = -1;
-            array = new int[capacity];
+public:
+    Stack(int size) {
+        capacity = size;
+        top = -1;
+        array = new int[capacity];
+    }
+
+    ~Stack() {
+        delete[] array;
+    }
+
+    bool isFull() {
+        return top == capacity - 1;
+    }
+
+    bool isEmpty() {
+        return top == -1;
+    }
+
+    void push(int data) {
+        if (isFull()) {
+            cout << "Stack overflow" << "\\n";
+            return;
         }
+        top++;
+        array[top] = data;
+    }
 
-        ~Stack() {
-            delete[] array;
+    int pop() {
+        if (isEmpty()) {
+            cout << "Stack is empty" << "\\n";
+            return -1; // Error indicator
         }
+        int poppedElement = array[top];
+        top--;
+        return poppedElement;
+    }
 
-        bool isFull() {
-            return top == capacity - 1;
+    int peek() {
+        if (isEmpty()) {
+            cout << "Stack is empty" << "\\n";
+            return -1; // Error indicator
         }
+        return array[top];
+    }
+};
 
-        bool isEmpty() {
-            return top == -1;
+int main() {
+    Stack myStack(5);
+
+    myStack.push(10);
+    myStack.push(20);
+    myStack.push(30);
+
+    cout << "Top element: " << myStack.peek() << "\\n";
+    // Top element: 30
+
+    while (!myStack.isEmpty()) {
+        cout << "Popped: " << myStack.pop() << "\\n";
+    }
+    // Popped: 30
+    // Popped: 20
+    // Popped: 10
+
+    return 0;
+}`,
+zig:
+`const std = @import("std");
+const print = std.debug.print;
+const Allocator = std.mem.Allocator;
+
+pub const Stack = struct {
+    capacity: usize,
+    top: usize = 0,
+    array: []i32,
+    allocator: Allocator,
+
+    pub fn init(allocator: Allocator, capacity: usize) !Stack {
+        return Stack{
+            .capacity = capacity,
+            .array = try allocator.alloc(i32, capacity),
+            .allocator = allocator,
+        };
+    }
+
+    pub fn deinit(self: *Stack) void {
+        self.allocator.free(self.array);
+    }
+
+    pub fn isFull(self: *Stack) bool {
+        return self.top == self.capacity - 1;
+    }
+
+    pub fn isEmpty(self: *Stack) bool {
+        return self.top == 0;
+    }
+
+    pub fn push(self: *Stack, data: i32) void {
+        if (self.isFull()) {
+            print("Stack Overflow \\n", .{});
+            return;
         }
+        self.top += 1;
+        self.array[self.top] = data;
+    }
 
-        void push(int data) {
-            if (isFull()) {
-                cout << "Stack overflow" << "\\n";
-                return;
-            }
-            top++;
-            array[top] = data;
+    pub fn pop(self: *Stack) i32 {
+        if (self.isEmpty()) {
+            print("Stack is empty \\n", .{});
+            return -1;
         }
+        const poppedElement: i32 = self.array[self.top];
+        self.top -= 1;
+        return poppedElement;
+    }
 
-        int pop() {
-            if (isEmpty()) {
-                cout << "Stack is empty" << "\\n";
-                return -1; // Error indicator
-            }
-            int poppedElement = array[top];
-            top--;
-            return poppedElement;
+    pub fn peek(self: *Stack) i32 {
+        if (self.isEmpty()) {
+            print("Stack is empty \\n", .{});
+            return -1;
         }
+        return self.array[self.top];
+    }
+};
 
-        int peek() {
-            if (isEmpty()) {
-                cout << "Stack is empty" << "\\n";
-                return -1; // Error indicator
-            }
-            return array[top];
-        }
-    };
+pub fn main() !void {
+    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+    const allocator = gpa.allocator();
 
-    int main() {
-        Stack myStack(5);
+    var stack = try Stack.init(allocator, 5);
+    stack.push(10);
+    stack.push(20);
+    stack.push(30);
 
-        myStack.push(10);
-        myStack.push(20);
-        myStack.push(30);
+    print("Top element: {}\\n", .{stack.peek()});
+    // Top element: 30
+    while (!stack.isEmpty()) {
+        print("Popped: {}\\n", .{stack.pop()});
+    }
+    // Popped: 30
+    // Popped: 20
+    // Popped: 10
 
-        cout << "Top element: " << myStack.peek() << "\\n";
-        // Top element: 30
-
-        while (!myStack.isEmpty()) {
-            cout << "Popped: " << myStack.pop() << "\\n";
-        }
-        // Popped: 30
-        // Popped: 20
-        // Popped: 10
-
-        return 0;
-    }`
+    return;
+}`
 };
 
 export const stackLinkedListExample = {
 cpp:
-    `#include <iostream>
-    using namespace std;
+`#include <iostream>
+using namespace std;
 
-    // Node structure 
-    struct Node {
-        int data;
-        Node* next;
-    };
+// Node structure 
+struct Node {
+    int data;
+    Node* next;
+};
 
-    class Stack{
-        private:
-            Node* top;
-            
-        public:
-            Stack(){
-                top = nullptr;
-            }
-            
-            bool isEmpty(){
-                return top == nullptr;
-            }
-            
-            void push(int value){
-                Node* node = new Node();
-                node->data = value;
-                node->next = top;
-                top = node;
-            }
-            
-            int pop(){
-                if(isEmpty()){
-                    cout << "Stack is empty" << "\\n";
-                    return -1; // Error indicator
-                }
-                
-                int poppedElement = top->data;
-                Node* temp = top;
-                top = top->next;
-                delete temp;
-                return poppedElement;
-            }
-            
-            int peek(){
-                if(isEmpty()){
-                    cout << "Stack is empty" << "\\n";
-                    return -1; // Error indicator
-                }
-                return top->data;
-            }
-    };
-
-    int main() {
-        Stack myStack;
-
-        myStack.push(10);
-        myStack.push(20);
-        myStack.push(30);
-
-        cout << "Top element: " << myStack.peek() << "\\n";
-        // Top element: 30
-
-        while (!myStack.isEmpty()) {
-            cout << "Popped: " << myStack.pop() << "\\n";
+class Stack{
+    private:
+        Node* top;
+        
+    public:
+        Stack(){
+            top = nullptr;
         }
-        // Popped: 30
-        // Popped: 20
-        // Popped: 10
+        
+        bool isEmpty(){
+            return top == nullptr;
+        }
+        
+        void push(int value){
+            Node* node = new Node();
+            node->data = value;
+            node->next = top;
+            top = node;
+        }
+        
+        int pop(){
+            if(isEmpty()){
+                cout << "Stack is empty" << "\\n";
+                return -1; // Error indicator
+            }
+            
+            int poppedElement = top->data;
+            Node* temp = top;
+            top = top->next;
+            delete temp;
+            return poppedElement;
+        }
+        
+        int peek(){
+            if(isEmpty()){
+                cout << "Stack is empty" << "\\n";
+                return -1; // Error indicator
+            }
+            return top->data;
+        }
+};
 
-        return 0;
-    }`
+int main() {
+    Stack myStack;
+
+    myStack.push(10);
+    myStack.push(20);
+    myStack.push(30);
+
+    cout << "Top element: " << myStack.peek() << "\\n";
+    // Top element: 30
+
+    while (!myStack.isEmpty()) {
+        cout << "Popped: " << myStack.pop() << "\\n";
+    }
+    // Popped: 30
+    // Popped: 20
+    // Popped: 10
+
+    return 0;
+}`,
+zig:
+`const std = @import("std");
+const print = std.debug.print;
+const Allocator = std.mem.Allocator;
+
+pub const Node = struct {
+    data: i32,
+    next: ?*Node,
+
+    pub fn init() Node {
+        return Node{ .data = 0, .next = null };
+    }
+};
+
+pub const Stack = struct {
+    top: ?*Node = null,
+    allocator: Allocator,
+
+    pub fn init(allocator: Allocator) !Stack {
+        return Stack{ .allocator = allocator };
+    }
+
+    pub fn deinit(self: *Stack) void {
+        var current = self.top;
+        while (current) |node| {
+            self.top = node.next;
+            self.allocator.destroy(node);
+            current = self.top;
+        }
+    }
+
+    pub fn isEmpty(self: *Stack) bool {
+        return self.top == null;
+    }
+
+    pub fn push(self: *Stack, data: i32) void {
+        var newNode: *Node = self.allocator.create(Node) catch {
+            print("Error while pushing to stack! \\n", .{});
+            return;
+        };
+        newNode.data = data;
+        newNode.next = self.top;
+        self.top = newNode;
+    }
+
+    pub fn pop(self: *Stack) i32 {
+        if (self.isEmpty()) {
+            print("Stack is empty \\n", .{});
+            return -1;
+        }
+        const poppedElement: i32 = self.top.?.data;
+        const popedNode = self.top.?;
+        self.top = self.top.?.next;
+        self.allocator.destroy(popedNode);
+        return poppedElement;
+    }
+
+    pub fn peek(self: *Stack) i32 {
+        if (self.isEmpty()) {
+            print("Stack is empty \\n", .{});
+            return -1;
+        }
+        return self.top.?.data;
+    }
+};
+
+pub fn main() !void {
+    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+    const allocator = gpa.allocator();
+
+    var stack = try Stack.init(allocator);
+    stack.push(10);
+    stack.push(20);
+    stack.push(30);
+
+    print("Top element: {}\\n", .{stack.peek()});
+    // Top element: 30
+    while (!stack.isEmpty()) {
+        print("Popped: {}\\n", .{stack.pop()});
+    }
+    // Popped: 30
+    // Popped: 20
+    // Popped: 10
+
+    return;
+}`
 };
 
 export const queueArrayExample = {

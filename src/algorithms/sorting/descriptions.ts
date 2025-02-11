@@ -11,20 +11,37 @@ export const bubbleSortTodo = [
 
 export const bubbleSortCode = {
 javascript: 
-    `function bubbleSort(arr){
-    const n = arr.length;
-    for(let i = 0; i < n-1; ++i){
-        for(let j = 0; j < n-1-i; ++j){
-            if(arr[j] > arr[j+1]){
-                // Swap the elements
-                let tmp = arr[j];
-                arr[j] = arr[j+1];
-                arr[j+1] = tmp;
+`function bubbleSort(arr){
+const n = arr.length;
+for(let i = 0; i < n-1; ++i){
+    for(let j = 0; j < n-1-i; ++j){
+        if(arr[j] > arr[j+1]){
+            // Swap the elements
+            let tmp = arr[j];
+            arr[j] = arr[j+1];
+            arr[j+1] = tmp;
+        }
+    }
+}
+    return arr;
+}`,
+zig:
+`fn bubbleSort(arr: []i32) void 
+{
+    const size = arr.len;
+    for (0..size - 1) |i| 
+    {
+        for (0..size - 1 - i) |j| 
+        {
+            if (arr[j] > arr[j + 1]) 
+            {
+                const tmp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = tmp;
             }
         }
     }
-        return arr;
-    }`
+}`
 };
 
 export const selectionSortDescription = "Selection Sort is a straightforward, stable comparison-based sorting algorithm. It works by repeatedly selecting the smallest (or largest, depending on the order) element from the unsorted portion of the list and placing it in the correct position. Although its not the most efficient for large datasets, it’s easy to understand and implement, making it a good learning tool for basic sorting concepts."
