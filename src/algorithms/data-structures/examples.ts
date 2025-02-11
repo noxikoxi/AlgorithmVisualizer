@@ -481,155 +481,320 @@ pub fn main() !void {
 
 export const stackArrayExample = {
 cpp:    
-    `#include <iostream>
-    using namespace std;
+`#include <iostream>
+using namespace std;
 
-    class Stack {
-    private:
-        int capacity;
-        int top;
-        int* array;
+class Stack {
+private:
+    int capacity;
+    int top;
+    int* array;
 
-    public:
-        Stack(int size) {
-            capacity = size;
-            top = -1;
-            array = new int[capacity];
+public:
+    Stack(int size) {
+        capacity = size;
+        top = -1;
+        array = new int[capacity];
+    }
+
+    ~Stack() {
+        delete[] array;
+    }
+
+    bool isFull() {
+        return top == capacity - 1;
+    }
+
+    bool isEmpty() {
+        return top == -1;
+    }
+
+    void push(int data) {
+        if (isFull()) {
+            cout << "Stack overflow" << "\\n";
+            return;
         }
+        top++;
+        array[top] = data;
+    }
 
-        ~Stack() {
-            delete[] array;
+    int pop() {
+        if (isEmpty()) {
+            cout << "Stack is empty" << "\\n";
+            return -1; // Error indicator
         }
+        int poppedElement = array[top];
+        top--;
+        return poppedElement;
+    }
 
-        bool isFull() {
-            return top == capacity - 1;
+    int peek() {
+        if (isEmpty()) {
+            cout << "Stack is empty" << "\\n";
+            return -1; // Error indicator
         }
+        return array[top];
+    }
+};
 
-        bool isEmpty() {
-            return top == -1;
+int main() {
+    Stack myStack(5);
+
+    myStack.push(10);
+    myStack.push(20);
+    myStack.push(30);
+
+    cout << "Top element: " << myStack.peek() << "\\n";
+    // Top element: 30
+
+    while (!myStack.isEmpty()) {
+        cout << "Popped: " << myStack.pop() << "\\n";
+    }
+    // Popped: 30
+    // Popped: 20
+    // Popped: 10
+
+    return 0;
+}`,
+zig:
+`const std = @import("std");
+const print = std.debug.print;
+const Allocator = std.mem.Allocator;
+
+pub const Stack = struct {
+    capacity: usize,
+    top: usize = 0,
+    array: []i32,
+    allocator: Allocator,
+
+    pub fn init(allocator: Allocator, capacity: usize) !Stack {
+        return Stack{
+            .capacity = capacity,
+            .array = try allocator.alloc(i32, capacity),
+            .allocator = allocator,
+        };
+    }
+
+    pub fn deinit(self: *Stack) void {
+        self.allocator.free(self.array);
+    }
+
+    pub fn isFull(self: *Stack) bool {
+        return self.top == self.capacity - 1;
+    }
+
+    pub fn isEmpty(self: *Stack) bool {
+        return self.top == 0;
+    }
+
+    pub fn push(self: *Stack, data: i32) void {
+        if (self.isFull()) {
+            print("Stack Overflow \\n", .{});
+            return;
         }
+        self.top += 1;
+        self.array[self.top] = data;
+    }
 
-        void push(int data) {
-            if (isFull()) {
-                cout << "Stack overflow" << "\\n";
-                return;
-            }
-            top++;
-            array[top] = data;
+    pub fn pop(self: *Stack) i32 {
+        if (self.isEmpty()) {
+            print("Stack is empty \\n", .{});
+            return -1;
         }
+        const poppedElement: i32 = self.array[self.top];
+        self.top -= 1;
+        return poppedElement;
+    }
 
-        int pop() {
-            if (isEmpty()) {
-                cout << "Stack is empty" << "\\n";
-                return -1; // Error indicator
-            }
-            int poppedElement = array[top];
-            top--;
-            return poppedElement;
+    pub fn peek(self: *Stack) i32 {
+        if (self.isEmpty()) {
+            print("Stack is empty \\n", .{});
+            return -1;
         }
+        return self.array[self.top];
+    }
+};
 
-        int peek() {
-            if (isEmpty()) {
-                cout << "Stack is empty" << "\\n";
-                return -1; // Error indicator
-            }
-            return array[top];
-        }
-    };
+pub fn main() !void {
+    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+    const allocator = gpa.allocator();
 
-    int main() {
-        Stack myStack(5);
+    var stack = try Stack.init(allocator, 5);
+    stack.push(10);
+    stack.push(20);
+    stack.push(30);
 
-        myStack.push(10);
-        myStack.push(20);
-        myStack.push(30);
+    print("Top element: {}\\n", .{stack.peek()});
+    // Top element: 30
+    while (!stack.isEmpty()) {
+        print("Popped: {}\\n", .{stack.pop()});
+    }
+    // Popped: 30
+    // Popped: 20
+    // Popped: 10
 
-        cout << "Top element: " << myStack.peek() << "\\n";
-        // Top element: 30
-
-        while (!myStack.isEmpty()) {
-            cout << "Popped: " << myStack.pop() << "\\n";
-        }
-        // Popped: 30
-        // Popped: 20
-        // Popped: 10
-
-        return 0;
-    }`
+    return;
+}`
 };
 
 export const stackLinkedListExample = {
 cpp:
-    `#include <iostream>
-    using namespace std;
+`#include <iostream>
+using namespace std;
 
-    // Node structure 
-    struct Node {
-        int data;
-        Node* next;
-    };
+// Node structure 
+struct Node {
+    int data;
+    Node* next;
+};
 
-    class Stack{
-        private:
-            Node* top;
-            
-        public:
-            Stack(){
-                top = nullptr;
-            }
-            
-            bool isEmpty(){
-                return top == nullptr;
-            }
-            
-            void push(int value){
-                Node* node = new Node();
-                node->data = value;
-                node->next = top;
-                top = node;
-            }
-            
-            int pop(){
-                if(isEmpty()){
-                    cout << "Stack is empty" << "\\n";
-                    return -1; // Error indicator
-                }
-                
-                int poppedElement = top->data;
-                Node* temp = top;
-                top = top->next;
-                delete temp;
-                return poppedElement;
-            }
-            
-            int peek(){
-                if(isEmpty()){
-                    cout << "Stack is empty" << "\\n";
-                    return -1; // Error indicator
-                }
-                return top->data;
-            }
-    };
-
-    int main() {
-        Stack myStack;
-
-        myStack.push(10);
-        myStack.push(20);
-        myStack.push(30);
-
-        cout << "Top element: " << myStack.peek() << "\\n";
-        // Top element: 30
-
-        while (!myStack.isEmpty()) {
-            cout << "Popped: " << myStack.pop() << "\\n";
+class Stack{
+    private:
+        Node* top;
+        
+    public:
+        Stack(){
+            top = nullptr;
         }
-        // Popped: 30
-        // Popped: 20
-        // Popped: 10
+        
+        bool isEmpty(){
+            return top == nullptr;
+        }
+        
+        void push(int value){
+            Node* node = new Node();
+            node->data = value;
+            node->next = top;
+            top = node;
+        }
+        
+        int pop(){
+            if(isEmpty()){
+                cout << "Stack is empty" << "\\n";
+                return -1; // Error indicator
+            }
+            
+            int poppedElement = top->data;
+            Node* temp = top;
+            top = top->next;
+            delete temp;
+            return poppedElement;
+        }
+        
+        int peek(){
+            if(isEmpty()){
+                cout << "Stack is empty" << "\\n";
+                return -1; // Error indicator
+            }
+            return top->data;
+        }
+};
 
-        return 0;
-    }`
+int main() {
+    Stack myStack;
+
+    myStack.push(10);
+    myStack.push(20);
+    myStack.push(30);
+
+    cout << "Top element: " << myStack.peek() << "\\n";
+    // Top element: 30
+
+    while (!myStack.isEmpty()) {
+        cout << "Popped: " << myStack.pop() << "\\n";
+    }
+    // Popped: 30
+    // Popped: 20
+    // Popped: 10
+
+    return 0;
+}`,
+zig:
+`const std = @import("std");
+const print = std.debug.print;
+const Allocator = std.mem.Allocator;
+
+pub const Node = struct {
+    data: i32,
+    next: ?*Node,
+
+    pub fn init() Node {
+        return Node{ .data = 0, .next = null };
+    }
+};
+
+pub const Stack = struct {
+    top: ?*Node = null,
+    allocator: Allocator,
+
+    pub fn init(allocator: Allocator) !Stack {
+        return Stack{ .allocator = allocator };
+    }
+
+    pub fn deinit(self: *Stack) void {
+        var current = self.top;
+        while (current) |node| {
+            self.top = node.next;
+            self.allocator.destroy(node);
+            current = self.top;
+        }
+    }
+
+    pub fn isEmpty(self: *Stack) bool {
+        return self.top == null;
+    }
+
+    pub fn push(self: *Stack, data: i32) void {
+        var newNode: *Node = self.allocator.create(Node) catch {
+            print("Error while pushing to stack! \\n", .{});
+            return;
+        };
+        newNode.data = data;
+        newNode.next = self.top;
+        self.top = newNode;
+    }
+
+    pub fn pop(self: *Stack) i32 {
+        if (self.isEmpty()) {
+            print("Stack is empty \\n", .{});
+            return -1;
+        }
+        const poppedElement: i32 = self.top.?.data;
+        const popedNode = self.top.?;
+        self.top = self.top.?.next;
+        self.allocator.destroy(popedNode);
+        return poppedElement;
+    }
+
+    pub fn peek(self: *Stack) i32 {
+        if (self.isEmpty()) {
+            print("Stack is empty \\n", .{});
+            return -1;
+        }
+        return self.top.?.data;
+    }
+};
+
+pub fn main() !void {
+    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+    const allocator = gpa.allocator();
+
+    var stack = try Stack.init(allocator);
+    stack.push(10);
+    stack.push(20);
+    stack.push(30);
+
+    print("Top element: {}\\n", .{stack.peek()});
+    // Top element: 30
+    while (!stack.isEmpty()) {
+        print("Popped: {}\\n", .{stack.pop()});
+    }
+    // Popped: 30
+    // Popped: 20
+    // Popped: 10
+
+    return;
+}`
 };
 
 export const queueArrayExample = {
