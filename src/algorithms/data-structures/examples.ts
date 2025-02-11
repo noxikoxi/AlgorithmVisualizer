@@ -293,7 +293,190 @@ cpp:
         // List after deleting at position 2: 10 30 
 
         return 0;
-    }`
+    }`,
+zig: 
+`const std = @import("std");
+const print = std.debug.print;
+const Allocator = std.mem.Allocator;
+
+//This is generic Circular Doubly Linked List
+pub fn Node(comptime T: type) type {
+    return struct {
+        const Self = @This();
+        data: T,
+        next: ?*Node(T),
+        prev: ?*Node(T),
+
+        pub fn init(data: T) Self {
+            return .{ .data = data, .next = null, .prev = null };
+        }
+    };
+}
+
+pub fn LinkedList(comptime T: type) type {
+    return struct {
+        const Self = @This();
+        head: ?*Node(T),
+        allocator: Allocator,
+
+        pub fn init(allocator: Allocator) Self {
+            return .{ .allocator = allocator, .head = null };
+        }
+
+        pub fn deinit(self: *Self) void {
+            while (self.head != null) {
+                try self.deleteFirst();
+            }
+        }
+
+        pub fn insertFirst(self: *Self, data: T) !void {
+            const newNode = try self.allocator.create(Node(T));
+            newNode.* = Node(T).init(data);
+            if (self.head == null) {
+                self.head = newNode;
+                newNode.next = newNode;
+                newNode.prev = newNode;
+            } else {
+                const tail = self.head.?.prev.?;
+                newNode.next = self.head;
+                newNode.prev = tail;
+                self.head.?.prev = newNode;
+                tail.next = newNode;
+                self.head = newNode;
+            }
+        }
+
+        pub fn insertPosition(self: *Self, data: T, pos: usize) !void {
+            const newNode = try self.allocator.create(Node(T));
+            newNode.* = Node(T).init(data);
+
+            if (pos == 0)
+                try self.insertFirst(data);
+
+            var node = self.head;
+            var index: usize = 0;
+            while (index < pos and node.?.next != self.head) {
+                node = node.?.next;
+                index += 1;
+            }
+
+            if (index == pos) {
+                newNode.prev = node.?.prev;
+                newNode.next = node;
+                node.?.prev.?.next = newNode;
+                node.?.prev = newNode;
+            }
+        }
+
+        pub fn insertEnd(self: *Self, data: T) !void {
+            const newNode = try self.allocator.create(Node(T));
+            newNode.* = Node(T).init(data);
+            if (self.head == null) {
+                self.head = newNode;
+                newNode.next = newNode;
+                newNode.prev = newNode;
+            } else {
+                const tail = self.head.?.prev.?;
+                newNode.next = self.head;
+                newNode.prev = tail;
+                tail.next = newNode;
+                self.head.?.prev = newNode;
+                self.head.?.prev = newNode;
+            }
+        }
+
+        pub fn deleteFirst(self: *Self) !void {
+            if (self.head == null)
+                return;
+
+            if (self.head.?.next == self.head) {
+                self.allocator.destroy(self.head.?);
+                self.head = null;
+                return;
+            }
+
+            const nextHead = self.head.?.next;
+            self.head.?.prev.?.next = nextHead;
+            nextHead.?.prev = self.head.?.prev;
+            self.allocator.destroy(self.head.?);
+            self.head = nextHead;
+        }
+
+        pub fn deletePosition(self: *Self, pos: usize) !void {
+            if (self.head == null)
+                return;
+            if (self.head.?.next == self.head) {
+                self.allocator.destroy(self.head.?);
+                self.head = null;
+                return;
+            }
+
+            var deleted = self.head;
+            var index: usize = 0;
+            while (index < pos and deleted.?.next != self.head) {
+                deleted = deleted.?.next;
+                index += 1;
+            }
+
+            if (index == pos) {
+                deleted.?.prev.?.next = deleted.?.next;
+                deleted.?.next.?.prev = deleted.?.prev;
+                self.allocator.destroy(deleted.?);
+            }
+        }
+
+        pub fn deleteEnd(self: *Self) !void {
+            if (self.head == null)
+                return;
+            if (self.head.?.next == self.head) {
+                self.allocator.destroy(self.head.?);
+                self.head = null;
+                return;
+            }
+            const oldTail = self.head.?.prev;
+            self.head.?.prev = oldTail.?.prev;
+            oldTail.?.prev.?.next = self.head;
+            self.allocator.destroy(oldTail.?);
+        }
+
+        pub fn display(self: *Self) void {
+            if (self.head == null) {
+                print("empty\\n", .{});
+                return;
+            }
+
+            var next = self.head;
+            while (next.?.next != self.head) {
+                print("{} ", .{next.?.data});
+                next = next.?.next;
+            }
+            print("{}\\n", .{next.?.data});
+        }
+    };
+}
+
+pub fn main() !void {
+    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+    const allocator = gpa.allocator();
+
+    var list = LinkedList(i32).init(allocator);
+    try list.insertFirst(10);
+    try list.insertFirst(20);
+    try list.insertEnd(50);
+    try list.insertPosition(15, 1);
+    //Will display 20 15 10 50
+    list.display();
+    try list.deleteFirst();
+    // Will display 15 10 50
+    list.display();
+    try list.deleteEnd();
+    //Will display 15 10
+    list.display();
+    try list.insertEnd(200);
+    try list.deletePosition(1);
+    // Will display 15 200
+    list.display();
+}`
 };
 
 export const stackArrayExample = {
