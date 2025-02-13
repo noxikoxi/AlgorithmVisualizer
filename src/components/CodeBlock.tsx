@@ -18,7 +18,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({codePair}) => {
   };
 
   return (
-    <div className="codeContainer" style={{ position: 'relative' }}>
+    <div className="codeContainer" style={{ position: 'relative', maxWidth: '95%'  }}>
       <SyntaxHighlighter language={language} style={okaidia}>
         {'\n' + codePair[language]}
       </SyntaxHighlighter>

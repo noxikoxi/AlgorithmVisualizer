@@ -56,24 +56,46 @@ export const selectionSortTodo = [
 
 export const selectionSortCode = {
 javascript:
-    `function selectionSort(arr){
-    const n = arr.length;
-    for(let i = 0; i < n-1; ++i){
-        let lowestValueIndex = i;
-        for(let j = i+1; j < n; ++j){
-            if(arr[j] < arr[lowestValueIndex]){
-                lowestValueIndex = j;
-            }
+`function selectionSort(arr){
+const n = arr.length;
+for(let i = 0; i < n-1; ++i){
+    let lowestValueIndex = i;
+    for(let j = i+1; j < n; ++j){
+        if(arr[j] < arr[lowestValueIndex]){
+            lowestValueIndex = j;
         }
-        // Swap the elements
-        if(lowestValueIndex !== i){
-            let tmp = arr[i];
+    }
+    // Swap the elements
+    if(lowestValueIndex !== i){
+        let tmp = arr[i];
+        arr[i] = arr[lowestValueIndex];
+        arr[lowestValueIndex] = tmp;
+    }
+}
+    return arr;
+}`,
+zig:
+`fn selectionSort(arr: []i32) void 
+{
+    const size = arr.len;
+    for (0..size - 1) |i| 
+    {
+        var lowestValueIndex = i;
+        for (i + 1..size) |j| 
+        {
+            if (arr[j] < arr[lowestValueIndex])
+                lowestValueIndex = j;
+        }
+
+        //Swap the elements
+        if (lowestValueIndex != i) 
+        {
+            const tmp = arr[i];
             arr[i] = arr[lowestValueIndex];
             arr[lowestValueIndex] = tmp;
         }
     }
-        return arr;
-    }`
+}`
 };
 
 export const insertionSortDescription = "Insertion sort is a simple, intuitive, stable and easy to implement sorting algorithm that builds the sorted array one item at a time. The algorithm iterates through the array, taking one unsorted element in each pass and inserting it into its correct position relative to the already sorted elements. The difference betweeen Selection Sort and Insertion Sort is that after each pass in Selection sort an element will be in its 'absolute' correct position, when in Insertion Sort this element will be in its relative correct position. Meaning each element is shifted to the left untill the next element is greater/lower."
@@ -90,23 +112,41 @@ export const insertionSortTodo = [
 export const insertionSortCode = 
 {
 javascript:
-    `insertionSort(arr){
-    const len = arr.length;
-    for (let i = 1; i < len; ++i){
-        const elem = arr[i];
-        let j = i-1;
+`insertionSort(arr){
+const len = arr.length;
+for (let i = 1; i < len; ++i){
+    const elem = arr[i];
+    let j = i-1;
 
-        while(j >= 0 && arr[j] > elem)
+    while(j >= 0 && arr[j] > elem)
+    {
+        // Shift elements 
+        arr[j+1] = arr[j];
+        --j;
+    }
+    // Insert selected element
+    arr[j+1] = elem;
+}
+return arr;
+}`,
+zig:
+`fn insertionSort(arr: []i32) void 
+{
+    const len = arr.len;
+    for (1..len) |i| 
+    {
+        const elem = arr[i];
+        var j: i32 = @intCast(i - 1);
+
+        while (j >= 0 and arr[@intCast(j)] > elem) : (j -= 1) 
         {
-            // Shift elements 
-            arr[j+1] = arr[j];
-            --j;
+            // Shift elements
+            arr[@intCast(j + 1)] = arr[@intCast(j)];
         }
         // Insert selected element
-        arr[j+1] = elem;
+        arr[@intCast(j + 1)] = elem;
     }
-    return arr;
-    }`
+}`
 };
 
 export const mergeSortDescription = "Merge sort is a stable sorting algorithm that uses 'divide and conquer' approach. It works by recursively dividing the array into smaller subarrays until each subarray has only one element. Then it starts merging those subarrays creating one from two, where the new array is sorted. The merge step ensures that each merged array is sorted. This algorithm is particulary effective for large datasets."
@@ -135,38 +175,95 @@ javascript:
         const sortedRight = mergeSort(right);
 
         return merge(sortedLeft, sortedRight);
-    }`
+    }`,
+zig:
+`fn mergeSort(arr: []i32) []i32 
+{
+    if (arr.len <= 1) 
+    {
+        return arr;
+    }
+
+    // Divide the array
+    const mid = @divFloor(arr.len, 2);
+    const left = arr[0..mid];
+    const right = arr[mid..];
+
+    // Sort
+    const sortedLeft = mergeSort(left);
+    const sortedRight = mergeSort(right);
+
+    return merge(sortedLeft, sortedRight);
+}`
 };
 
 export const mergeCode = {
 javascript:    
-    `function merge(left, right){
-        const result = [];
-        let i = 0;
-        let j = 0;
+`function merge(left, right){
+    const result = [];
+    let i = 0;
+    let j = 0;
 
-        while(i < left.length && j < right.length){
-            if(left[i] < right[j]){
-                result.push(left[i])
-                ++i;
-            }else{
-                result.push(right[j])
-                ++j;
-            }
-        }
-
-        // Append remaining elements
-        while(i < left.length){
-            result.push(left[i]);
+    while(i < left.length && j < right.length){
+        if(left[i] < right[j]){
+            result.push(left[i])
             ++i;
-        }
-        while(j < right.length){
-            result.push(right[j]);
+        }else{
+            result.push(right[j])
             ++j;
         }
-        
-        return result;
-    }`
+    }
+
+    // Append remaining elements
+    while(i < left.length){
+        result.push(left[i]);
+        ++i;
+    }
+    while(j < right.length){
+        result.push(right[j]);
+        ++j;
+    }
+    
+    return result;
+}`,
+zig:
+`fn merge(left: []i32, right: []i32) []i32 
+{
+    const size = left.len + right.len;
+    var result = std.heap.page_allocator.alloc(i32, size) catch return &[_]i32{};
+    var i: usize = 0;
+    var j: usize = 0;
+    var k: usize = 0;
+
+    while (i < left.len and j < right.len) 
+    {
+        if (left[i] < right[j]) 
+        {
+            result[k] = left[i];
+            i += 1;
+        } 
+        else 
+        {
+            result[k] = right[j];
+            j += 1;
+        }
+        k += 1;
+    }
+
+    // Append remaining elements
+    while (i < left.len) 
+    {
+        result[k] = left[i];
+        i += 1;
+        k += 1;
+    }
+    while (j < right.len) {
+        result[k] = right[j];
+        j += 1;
+        k += 1;
+    }
+    return result;
+}`
 };
 
 export const inPlaceMergeSortDescription = "In merge sort new arrays are created using auxiliary space. However the same effect can be achieved without creating them, resulting in O(1) space complexity. Dividing they array can be done using indexes, so apart from creating new array, indexes can be passed as parameters (begin, middle, end)."
@@ -174,55 +271,111 @@ export const inPlaceMergeSortAdditional = `<span>Be aware that presented approac
 
 export const inPlaceMergeSortCode = { 
 javascript:
-    `function inPlaceMergeSort(arr, start = 0, end = arr.length-1){
-        if(start >= end){
-            return;
-        }
+`function inPlaceMergeSort(arr, start = 0, end = arr.length-1){
+    if(start >= end){
+        return;
+    }
 
-        const mid = start + Math.floor((end - start) / 2);
-        // Sort
-        inPlaceMergeSort(arr, start, mid);
-        inPlaceMergeSort(arr, mid+1, end);
+    const mid = start + Math.floor((end - start) / 2);
+    // Sort
+    inPlaceMergeSort(arr, start, mid);
+    inPlaceMergeSort(arr, mid+1, end);
 
-        // Merge
-        inPlaceMerge(arr, start, mid, end);
-    }`
+    // Merge
+    inPlaceMerge(arr, start, mid, end);
+}`,
+zig:
+`fn inPlaceMergeSort(arr: []i32, start: usize, end: usize) void 
+{
+    if (start >= end) 
+    {
+        return;
+    }
+
+    const mid = start + @divFloor((end - start), 2);
+
+    // Sort
+    inPlaceMergeSort(arr, start, mid);
+    inPlaceMergeSort(arr, mid + 1, end);
+
+    // Merge
+    inPlaceMerge(arr, start, mid, end);
+}`
 };
 
 export const inPlaceMergeCode = {
 javascript:
-    `function inPlaceMerge(arr, start, mid, end){
-        let rightIndex = mid+1;
+`function inPlaceMerge(arr, start, mid, end){
+    let rightIndex = mid+1;
 
-        // Already sorted
-        if(arr[mid] <= arr[rightIndex]){
-            return;
-        }
+    // Already sorted
+    if(arr[mid] <= arr[rightIndex]){
+        return;
+    }
 
-        while(start <= mid && rightIndex <= end){
+    while(start <= mid && rightIndex <= end){
 
-            // Correct place
-            if(arr[start] <= arr[rightIndex]){
-                ++start;
-            }else{
-                const val = arr[rightIndex];
-                let index = rightIndex;
-                
-                // Shift elements to the right
-                while (index !== start){
-                    arr[index] = arr[index-1];
-                    --index;
-                }
-
-                arr[start] = val;
-                ++start;
-                ++mid;
-                ++rightIndex;
-            }
+        // Correct place
+        if(arr[start] <= arr[rightIndex]){
+            ++start;
+        }else{
+            const val = arr[rightIndex];
+            let index = rightIndex;
             
-        }
+            // Shift elements to the right
+            while (index !== start){
+                arr[index] = arr[index-1];
+                --index;
+            }
 
-    }`
+            arr[start] = val;
+            ++start;
+            ++mid;
+            ++rightIndex;
+        }
+        
+    }
+
+}`,
+zig:
+`fn inPlaceMerge(arr: []i32, start: usize, mid: usize, end: usize) void 
+{
+    var startCopy = start;
+    var midCopy = mid;
+    var rightIndex = mid + 1;
+
+    // Already sorted
+    if (arr[midCopy] <= arr[rightIndex]) 
+    {
+        return;
+    }
+
+    while (startCopy <= midCopy and rightIndex <= end) 
+    {
+        // Correct place
+        if (arr[startCopy] <= arr[rightIndex]) 
+        {
+            startCopy += 1;
+        } 
+        else 
+        {
+            const val = arr[rightIndex];
+            var index = rightIndex;
+
+            // Shift elements to the right
+            while (index != startCopy) 
+            {
+                arr[index] = arr[index - 1];
+                index -= 1;
+            }
+
+            arr[startCopy] = val;
+            startCopy += 1;
+            midCopy += 1;
+            rightIndex += 1;
+        }
+    }
+}`
 };
 
 export const quickSortDescription = "Quick Sort is unstable sorting algorithm based on divide and conquer approach. It selects a pivot element and divide array according to it, inserting pivot in its correct position. After this step quick sort is repeated for two subarrays. Selecting pivot is really important, because bad choice affects the perfomance, however the algorithm would still works. The pivot can be chosen in serveral ways, usually picking the first element, last element, median or random one.";
@@ -236,37 +389,74 @@ export const quickSortAdditional = `<span>Space complexity differs based on impl
 
 export const quickSortCode = {
 javascript:
-    `function quickSort(arr, left, right){
-        if(left >= right){
-            return;
-        }
+`function quickSort(arr, left, right){
+    if(left >= right){
+        return;
+    }
 
-        const partitionIndex = partition(arr, left, right);
+    const partitionIndex = partition(arr, left, right);
 
-        quickSort(arr, left, partitionIndex-1);
-        quickSort(arr, partitionIndex+1, right);
-    }`
+    quickSort(arr, left, partitionIndex-1);
+    quickSort(arr, partitionIndex+1, right);
+}`,
+zig:
+`fn quickSort(arr: []i32, left: i32, right: i32) void 
+{
+    if (left >= right) 
+    {
+        return;
+    }
+
+    const partitionIndex = partition(arr, left, right);
+
+    quickSort(arr, left, partitionIndex - 1);
+    quickSort(arr, partitionIndex + 1, right);
+}`
 };
 
 export const partitionCode = {
 javascript:
-    `partition(arr, left, right){
-        const pivot = arr[right];
+`partition(arr, left, right){
+    const pivot = arr[right];
 
-        let i = left-1;
+    let i = left-1;
 
-        for(let j = left; j < right; ++j){
-            if(arr[j] < pivot){
-                ++i;
-                [arr[i], arr[j]] = [arr[j], arr[i]];
-            }
+    for(let j = left; j < right; ++j){
+        if(arr[j] < pivot){
+            ++i;
+            [arr[i], arr[j]] = [arr[j], arr[i]];
         }
+    }
 
-        [arr[i+1], arr[right]] = [arr[right], arr[i+1]];
+    [arr[i+1], arr[right]] = [arr[right], arr[i+1]];
 
-        // Pivot index
-        return i+1;
-    }`
+    // Pivot index
+    return i+1;
+}`,
+zig:
+`fn partition(arr: []i32, left: i32, right: i32) i32 
+{
+    const pivot = arr[@intCast(right)];
+
+    var i: i32 = @intCast(left);
+    i -= 1;
+
+    for (@intCast(left)..@intCast(right)) |j| 
+    {
+        if (arr[j] < pivot) 
+        {
+            i += 1;
+            const tmp = arr[@intCast(i)];
+            arr[@intCast(i)] = arr[j];
+            arr[j] = tmp;
+        }
+    }
+    const tmp = arr[@intCast(i + 1)];
+    arr[@intCast(i + 1)] = arr[@intCast(right)];
+    arr[@intCast(right)] = tmp;
+    // Pivot index
+    return i + 1;
+}`
 };
 
 export const heapSortDescription = "Heap sort is in-place, comparison-based, not stable sorting algorithm that uses a binary heap data structure to sort elements. It is renowned for its efficiency, particularly when memory usage is critical as it not require additional space proportional to input array. Algorithm is based on building a heap and then sorting elements. ";
@@ -284,45 +474,93 @@ export const heapSortTodo = [
 
 export const heapSortCode= {
 javascript:
-    `function heapSort(arr){
-        buildHeap(arr);
-        
-        for(let i = arr.length-1; i >=1; --i){
-            [arr[0], arr[i]] = [arr[i], arr[0]];
-            heapify(arr, i, 0);
-        }
-    }`
+`function heapSort(arr){
+    buildHeap(arr);
+    
+    for(let i = arr.length-1; i >=1; --i){
+        [arr[0], arr[i]] = [arr[i], arr[0]];
+        heapify(arr, i, 0);
+    }
+}`,
+zig:
+`fn heapSort(arr: []i32) void 
+{
+    buildHeap(arr);
+
+    var i = arr.len - 1;
+    while (i >= 1) : (i -= 1) 
+    {
+        const tmp = arr[0];
+        arr[0] = arr[i];
+        arr[i] = tmp;
+        heapify(arr, i, 0);
+    }
+}`
 };
 
 export const buildHeapCode={
 javascript:
-    `function buildHeap(arr){
-        for(let i = Math.floor(arr.length / 2) - 1; i >= 0; --i){
-            heapify(arr, arr.length, i);
-        }
-    }`
+`function buildHeap(arr){
+    for(let i = Math.floor(arr.length / 2) - 1; i >= 0; --i){
+        heapify(arr, arr.length, i);
+    }
+}`,
+zig:
+`fn buildHeap(arr: []i32) void 
+{
+    var i: i32 = @intCast(@divFloor(arr.len, 2) - 1);
+    while (i >= 0) : (i -= 1) 
+    {
+        heapify(arr, arr.len, @intCast(i));
+    }
+}`
 };
 
 export const heapifyCode = { 
 javascript:
-    `function heapify(arr, heapLen, nodeIdx){
-        let largest = nodeIdx;
-        const left = 2 * nodeIdx+1;
-        const right = 2 * nodeIdx+2;
+`function heapify(arr, heapLen, nodeIdx){
+    let largest = nodeIdx;
+    const left = 2 * nodeIdx+1;
+    const right = 2 * nodeIdx+2;
 
-        if(left < heapLen && arr[left] > arr[largest]){
-            largest = left;
-        }
+    if(left < heapLen && arr[left] > arr[largest]){
+        largest = left;
+    }
 
-        if(right < heapLen && arr[right] > arr[largest]){
-            largest = right;
-        }
+    if(right < heapLen && arr[right] > arr[largest]){
+        largest = right;
+    }
 
-        if(largest != nodeIdx){
-            [arr[nodeIdx], arr[largest]] = [arr[largest], arr[nodeIdx]];
-            heapify(arr, heapLen, largest)
-        }
-    }`
+    if(largest != nodeIdx){
+        [arr[nodeIdx], arr[largest]] = [arr[largest], arr[nodeIdx]];
+        heapify(arr, heapLen, largest)
+    }
+}`,
+zig:
+`fn heapify(arr: []i32, heapLen: usize, nodeIdx: usize) void 
+{
+    var largest = nodeIdx;
+    const left = 2 * nodeIdx + 1;
+    const right = 2 * nodeIdx + 2;
+
+    if (left < heapLen and arr[left] > arr[largest]) 
+    {
+        largest = left;
+    }
+
+    if (right < heapLen and arr[right] > arr[largest]) 
+    {
+        largest = right;
+    }
+
+    if (largest != nodeIdx) 
+    {
+        const tmp = arr[nodeIdx];
+        arr[nodeIdx] = arr[largest];
+        arr[largest] = tmp;
+        heapify(arr, heapLen, largest);
+    }
+}`
 };
 
 export const heapSortAdditional = `<span>Heapify process has O(n) time complexity. To sort elements in different order you should use min-heap instead of max-heap. Space Complexity for heap sort depends on the implementation, it is possible to reduce it to O(1) using iterative approach instead of recursion (needs memory for call stack).</span>`;
